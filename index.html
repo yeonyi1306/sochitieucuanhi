@@ -3,38 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f6f7fb" />
+  <meta name="theme-color" content="#f7f4fc" />
   <title>Sổ chi tiêu theo ngày</title>
+
   <style>
     :root {
-      --bg: #f6f7fb;
+      --bg: #f7f4fc;
       --surface: #ffffff;
-      --surface-soft: #f9fafc;
-      --text: #17181c;
-      --muted: #70747d;
-      --line: #e8e9ee;
-      --accent: #5c56d8;
-      --accent-soft: #efedff;
+      --surface-soft: #f4f0fa;
+      --text: #25202d;
+      --muted: #6f6878;
+      --line: #e5dff0;
+      --accent: #7a5bb8;
+      --accent-soft: #eee7fa;
       --danger: #e35d6a;
-      --shadow: 0 16px 40px rgba(25, 28, 40, 0.06);
+      --shadow: 0 16px 40px rgba(88, 63, 120, 0.08);
       --radius-xl: 22px;
       --radius-lg: 16px;
       --radius-md: 12px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
       background: var(--bg);
       color: var(--text);
     }
 
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    input::placeholder { color: #b7bac2; }
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    input::placeholder {
+      color: #b7bac2;
+    }
 
     .app-shell {
       width: min(1460px, calc(100% - 36px));
@@ -54,8 +78,8 @@
       padding: 12px 24px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: rgba(255,255,255,0.88);
-      box-shadow: 0 8px 24px rgba(25, 28, 40, 0.04);
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 8px 24px rgba(88, 63, 120, 0.05);
       text-align: center;
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -171,13 +195,13 @@
 
     .table-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+      grid-template-columns: minmax(0, 1fr) minmax(330px, 0.58fr);
       align-items: center;
     }
 
     .table-head {
       min-height: 48px;
-      background: #fbfbfd;
+      background: #faf8fd;
       color: var(--muted);
       font-size: 12px;
       font-weight: 800;
@@ -204,9 +228,13 @@
       background: var(--surface);
     }
 
-    .expense-row:last-child { border-bottom: 0; }
+    .expense-row:last-child {
+      border-bottom: 0;
+    }
 
-    .expense-row:focus-within { background: #fcfbff; }
+    .expense-row:focus-within {
+      background: #faf7ff;
+    }
 
     .text-input,
     .money-input,
@@ -219,7 +247,10 @@
       color: var(--text);
       padding: 9px 10px;
       border-radius: 10px;
-      transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+      transition:
+        border-color 0.16s ease,
+        background 0.16s ease,
+        box-shadow 0.16s ease;
     }
 
     .text-input:focus,
@@ -228,14 +259,32 @@
     .note-amount:focus {
       border-color: #d7d3ff;
       background: var(--accent-soft);
-      box-shadow: 0 0 0 3px rgba(92,86,216,.08);
+      box-shadow: 0 0 0 3px rgba(122, 91, 184, 0.1);
     }
 
     .money-cell {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       min-width: 0;
+    }
+
+    .payment-method {
+      flex: 0 0 94px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface-soft);
+      color: var(--text);
+      padding: 0 8px;
+      font-size: 12px;
+      font-weight: 800;
+      outline: 0;
+    }
+
+    .payment-method:focus {
+      border-color: #cbb9e6;
+      box-shadow: 0 0 0 3px rgba(122, 91, 184, 0.1);
     }
 
     .money-input,
@@ -256,15 +305,15 @@
       color: var(--muted);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: .04em;
+      letter-spacing: 0.04em;
     }
 
     .table-footer {
       min-height: 60px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+      grid-template-columns: minmax(0, 1fr) minmax(330px, 0.58fr);
       border-top: 1px solid var(--line);
-      background: #fafaff;
+      background: #f8f4fc;
       position: sticky;
       bottom: 0;
       z-index: 2;
@@ -300,7 +349,10 @@
       border: 1px solid var(--line);
       min-height: 40px;
       font-weight: 800;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background 0.12s ease;
     }
 
     .primary-btn {
@@ -308,7 +360,7 @@
       border-color: var(--accent);
       background: var(--accent);
       color: white;
-      box-shadow: 0 8px 18px rgba(92, 86, 216, .2);
+      box-shadow: 0 8px 18px rgba(122, 91, 184, 0.22);
     }
 
     .ghost-btn,
@@ -318,8 +370,18 @@
       padding: 0 12px;
     }
 
-    .icon-btn { width: 40px; padding: 0; display: grid; place-items: center; }
-    .icon-btn:hover, .ghost-btn:hover, .primary-btn:hover { transform: translateY(-1px); }
+    .icon-btn {
+      width: 40px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .icon-btn:hover,
+    .ghost-btn:hover,
+    .primary-btn:hover {
+      transform: translateY(-1px);
+    }
 
     .summary-panels {
       grid-column: 1 / -1;
@@ -336,11 +398,46 @@
 
     .balance-summary {
       margin: 18px;
-      padding: 20px 18px;
+      padding: 14px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: var(--surface-soft);
-      text-align: center;
+      display: grid;
+      gap: 9px;
+    }
+
+    .balance-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+    }
+
+    .balance-line .label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .balance-line .value {
+      font-size: 18px;
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .balance-line.total {
+      background: var(--accent-soft);
+      border-color: #dacbed;
+    }
+
+    .balance-line.total .label,
+    .balance-line.total .value {
+      color: var(--accent);
     }
 
     .monthly-summary {
@@ -386,15 +483,20 @@
     }
 
     .income-table .table-head {
-      background: #f8fcf9;
+      background: #f6f1fb;
     }
 
     .income-table .table-footer {
-      background: #f8fcf9;
+      background: #f6f1fb;
     }
 
-    .net-positive { color: #198754; }
-    .net-negative { color: var(--danger); }
+    .net-positive {
+      color: #198754;
+    }
+
+    .net-negative {
+      color: var(--danger);
+    }
 
     .notes-wrap {
       padding: 18px;
@@ -433,7 +535,7 @@
 
     .note-item {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr) 120px auto;
+      grid-template-columns: auto minmax(0, 1fr) 190px auto;
       gap: 8px;
       align-items: center;
       padding: 9px;
@@ -485,104 +587,280 @@
     }
 
     @media (max-width: 980px) {
-      .dashboard { grid-template-columns: 1fr; }
-      .summary-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .expense-scroll { height: 420px; }
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-panels {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .expense-scroll {
+        height: 420px;
+      }
     }
 
     @media (max-width: 700px) {
-      .app-shell { width: min(100% - 20px, 1460px); padding-top: 12px; }
-      .panel-head { align-items: stretch; }
-      .controls { width: 100%; }
-      .date-input-wrap { flex: 1 1 180px; }
-      .date-input { min-width: 0; width: 100%; }
+      .app-shell {
+        width: min(100% - 20px, 1460px);
+        padding-top: 12px;
+      }
+
+      .panel-head {
+        align-items: stretch;
+      }
+
+      .controls {
+        width: 100%;
+      }
+
+      .date-input-wrap {
+        flex: 1 1 180px;
+      }
+
+      .date-input {
+        min-width: 0;
+        width: 100%;
+      }
+
       .table-row,
-      .table-footer { grid-template-columns: minmax(0, 1fr) minmax(150px, .5fr); }
-      .summary-panels { grid-template-columns: 1fr; }
-      .expense-scroll { height: 380px; }
-      .note-item { grid-template-columns: auto minmax(0, 1fr) auto; }
-      .note-item .note-money-cell { grid-column: 2 / 3; }
-      .note-item .delete-note { grid-column: 3 / 4; grid-row: 1 / span 2; }
+      .table-footer {
+        grid-template-columns: minmax(0, 1fr) minmax(230px, 0.62fr);
+      }
+
+      .payment-method {
+        flex-basis: 88px;
+      }
+
+      .summary-panels {
+        grid-template-columns: 1fr;
+      }
+
+      .expense-scroll {
+        height: 380px;
+      }
+
+      .note-item {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+      }
+
+      .note-item .note-money-cell {
+        grid-column: 2 / 3;
+      }
+
+      .note-item .payment-method {
+        flex-basis: 92px;
+      }
+
+      .note-item .delete-note {
+        grid-column: 3 / 4;
+        grid-row: 1 / span 2;
+      }
     }
 
     @media (max-width: 470px) {
-      .date-title { font-size: 18px; min-height: 56px; }
-      .table-card, .notes-wrap { padding: 12px; }
-      .table-head > div, .expense-row > div, .table-footer > div { padding: 0 9px; }
-      .money-input, .text-input { padding: 8px; }
-      .note-item { grid-template-columns: auto minmax(0, 1fr) auto; }
+      .date-title {
+        font-size: 18px;
+        min-height: 56px;
+      }
+
+      .table-card,
+      .notes-wrap {
+        padding: 12px;
+      }
+
+      .table-head > div,
+      .expense-row > div,
+      .table-footer > div {
+        padding: 0 9px;
+      }
+
+      .money-input,
+      .text-input {
+        padding: 8px;
+      }
+
+      .note-item {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="app-shell">
+
     <header class="topbar">
-      <div class="date-title" id="dateTitle">Thông tin chi tiêu ngày 07/09/2026</div>
+      <div class="date-title" id="dateTitle">
+        Thông tin chi tiêu ngày 07/09/2026
+      </div>
     </header>
 
     <section class="dashboard">
+
+      <!-- =========================
+           BẢNG CHI TIÊU
+      ========================== -->
       <article class="panel">
+
         <div class="panel-head">
           <div>
             <p class="section-label">Chi tiêu trong ngày</p>
             <h2 class="section-title">Bảng ghi chép</h2>
           </div>
+
           <div class="controls">
+
             <label class="date-input-wrap" aria-label="Chọn ngày">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
                 <rect x="3" y="4" width="18" height="17" rx="3"></rect>
                 <path d="M16 2v4M8 2v4M3 9h18"></path>
               </svg>
-              <input class="date-input" id="datePicker" type="date" />
+
+              <input
+                class="date-input"
+                id="datePicker"
+                type="date"
+              />
             </label>
-            <div class="currency-toggle" role="group" aria-label="Đơn vị tiền tệ">
-              <button type="button" data-currency="KRW" class="active">KRW</button>
-              <button type="button" data-currency="VND">VND</button>
+
+            <div
+              class="currency-toggle"
+              role="group"
+              aria-label="Đơn vị tiền tệ"
+            >
+              <button
+                type="button"
+                data-currency="KRW"
+                class="active"
+              >
+                KRW
+              </button>
+
+              <button
+                type="button"
+                data-currency="VND"
+              >
+                VND
+              </button>
             </div>
+
           </div>
         </div>
 
         <div class="table-card">
+
+          <!-- =========================
+               CHI TIÊU
+          ========================== -->
           <div class="expense-table">
+
             <div class="table-row table-head">
               <div>Nội dung chi tiêu</div>
               <div>Giá</div>
             </div>
 
-            <div class="expense-scroll" id="expenseRows" aria-live="polite"></div>
+            <div
+              class="expense-scroll"
+              id="expenseRows"
+              aria-live="polite"
+            ></div>
 
             <div class="table-footer">
-              <div class="total-label">Tổng tiền</div>
-              <div class="total-value" id="totalValue">₩0</div>
+              <div class="total-label">
+                Tổng tiền
+              </div>
+
+              <div
+                class="total-value"
+                id="totalValue"
+              >
+                ₩0
+              </div>
             </div>
+
           </div>
 
           <div class="table-actions">
-            <button type="button" class="primary-btn" id="addExpenseBtn">＋ Thêm dòng</button>
+            <button
+              type="button"
+              class="primary-btn"
+              id="addExpenseBtn"
+            >
+              ＋ Thêm dòng
+            </button>
           </div>
-          <div class="status" id="saveStatus">Dữ liệu tự động lưu trên thiết bị</div>
 
+          <div
+            class="status"
+            id="saveStatus"
+          >
+            Dữ liệu tự động lưu trên thiết bị
+          </div>
+
+          <!-- =========================
+               TIỀN VÀO
+          ========================== -->
           <section class="income-section">
+
             <div class="expense-table income-table">
+
               <div class="table-row table-head">
                 <div>Nội dung tiền vào</div>
                 <div>Số tiền</div>
               </div>
-              <div class="expense-scroll" id="incomeRows" aria-live="polite"></div>
+
+              <div
+                class="expense-scroll"
+                id="incomeRows"
+                aria-live="polite"
+              ></div>
+
               <div class="table-footer">
-                <div class="total-label">Tổng tiền vào</div>
-                <div class="total-value" id="incomeTotalValue">₩0</div>
+                <div class="total-label">
+                  Tổng tiền vào
+                </div>
+
+                <div
+                  class="total-value"
+                  id="incomeTotalValue"
+                >
+                  ₩0
+                </div>
               </div>
+
             </div>
+
             <div class="table-actions">
-              <button type="button" class="ghost-btn" id="addIncomeBtn">＋ Thêm dòng tiền vào</button>
+              <button
+                type="button"
+                class="ghost-btn"
+                id="addIncomeBtn"
+              >
+                ＋ Thêm dòng tiền vào
+              </button>
             </div>
+
           </section>
 
         </div>
       </article>
 
+      <!-- =========================
+           TAKE NOTE
+      ========================== -->
       <aside class="panel">
+
         <div class="panel-head">
           <div>
             <p class="section-label">Take Note</p>
@@ -591,66 +869,193 @@
         </div>
 
         <div class="notes-wrap">
+
+          <!-- TIỀN NGƯỜI KHÁC CẦN TRẢ -->
           <section class="note-column">
+
             <div class="note-column-head">
               <h3>Tiền người khác cần trả</h3>
-              <span class="section-label" style="margin:0;">THU VỀ</span>
+
+              <span
+                class="section-label"
+                style="margin:0;"
+              >
+                THU VỀ
+              </span>
             </div>
-            <div class="note-list" id="receivableList"></div>
+
+            <div
+              class="note-list"
+              id="receivableList"
+            ></div>
+
             <div class="note-footer">
-              <button type="button" class="tiny-btn" data-add-note="receivable">＋ Thêm khoản</button>
+              <button
+                type="button"
+                class="tiny-btn"
+                data-add-note="receivable"
+              >
+                ＋ Thêm khoản
+              </button>
             </div>
+
           </section>
 
+          <!-- TIỀN TRẢ NGƯỜI KHÁC -->
           <section class="note-column">
+
             <div class="note-column-head">
               <h3>Tiền trả người khác</h3>
-              <span class="section-label" style="margin:0;">PHẢI TRẢ</span>
+
+              <span
+                class="section-label"
+                style="margin:0;"
+              >
+                PHẢI TRẢ
+              </span>
             </div>
-            <div class="note-list" id="payableList"></div>
+
+            <div
+              class="note-list"
+              id="payableList"
+            ></div>
+
             <div class="note-footer">
-              <button type="button" class="tiny-btn" data-add-note="payable">＋ Thêm khoản</button>
+              <button
+                type="button"
+                class="tiny-btn"
+                data-add-note="payable"
+              >
+                ＋ Thêm khoản
+              </button>
             </div>
+
           </section>
+
         </div>
       </aside>
 
+      <!-- =========================
+           TỔNG HỢP + SỐ DƯ
+      ========================== -->
       <div class="summary-panels">
+
+        <!-- TỔNG HỢP THÁNG -->
         <aside class="panel monthly-panel">
+
           <div class="panel-head">
             <div>
               <p class="section-label">Tổng hợp tháng</p>
-              <h2 class="section-title">Đã tiêu trong tháng</h2>
+              <h2 class="section-title">
+                Đã tiêu trong tháng
+              </h2>
             </div>
           </div>
+
           <div class="monthly-summary">
-            <div class="monthly-month" id="monthlyMonth">Tháng 09/2026</div>
-            <div class="monthly-value" id="monthlyValue">₩0</div>
-            <div class="monthly-caption">Chỉ tính các khoản chi trong tháng đang chọn</div>
+
+            <div
+              class="monthly-month"
+              id="monthlyMonth"
+            >
+              Tháng 09/2026
+            </div>
+
+            <div
+              class="monthly-value"
+              id="monthlyValue"
+            >
+              ₩0
+            </div>
+
+            <div class="monthly-caption">
+              Chỉ tính các khoản chi trong tháng đang chọn
+            </div>
+
           </div>
+
         </aside>
 
+        <!-- SỐ DƯ -->
         <aside class="panel balance-panel">
+
           <div class="panel-head">
             <div>
               <p class="section-label">Tài chính</p>
-              <h2 class="section-title">Số dư</h2>
+              <h2 class="section-title">
+                Số dư
+              </h2>
             </div>
           </div>
-          <div class="balance-summary">
-            <div class="monthly-month">Tiền vào − Đã tiêu trong tháng</div>
-            <div class="monthly-value" id="balanceValue">₩0</div>
-            <div class="monthly-caption">Lấy tổng tiền vào của cả tháng trừ tổng chi tiêu của tháng</div>
+
+          <div
+            class="balance-summary"
+            aria-live="polite"
+          >
+
+            <div class="balance-line">
+              <span class="label">
+                Số dư Tiền mặt
+              </span>
+
+              <span
+                class="value"
+                id="cashBalanceValue"
+              >
+                ₩0
+              </span>
+            </div>
+
+            <div class="balance-line">
+              <span class="label">
+                Số dư Tài khoản
+              </span>
+
+              <span
+                class="value"
+                id="bankBalanceValue"
+              >
+                ₩0
+              </span>
+            </div>
+
+            <div class="balance-line total">
+              <span class="label">
+                Tổng số dư
+              </span>
+
+              <span
+                class="value"
+                id="balanceValue"
+              >
+                ₩0
+              </span>
+            </div>
+
           </div>
         </aside>
+
       </div>
     </section>
   </main>
 
   <script>
-    const STORAGE_KEY = 'daily-expense-dashboard-v1';
-    const SETTINGS_KEY = 'daily-expense-dashboard-settings-v1';
+    /* =========================================================
+       STORAGE / CONFIG
+    ========================================================= */
+
+    const STORAGE_KEY =
+      'daily-expense-dashboard-v1';
+
+    const SETTINGS_KEY =
+      'daily-expense-dashboard-settings-v1';
+
     const INITIAL_EXPENSE_ROWS = 10;
+
+
+    /* =========================================================
+       STATE
+    ========================================================= */
 
     const state = {
       selectedDate: getTodayKey(),
@@ -659,531 +1064,2431 @@
       monthlyIncomes: loadMonthlyIncomes()
     };
 
-    const $ = (selector) => document.querySelector(selector);
 
-    const datePicker = $('#datePicker');
-    const dateTitle = $('#dateTitle');
-    const expenseRows = $('#expenseRows');
-    const incomeRows = $('#incomeRows');
-    const totalValue = $('#totalValue');
-    const monthlyValue = $('#monthlyValue');
-    const monthlyMonth = $('#monthlyMonth');
-    const balanceValue = $('#balanceValue');
-    const saveStatus = $('#saveStatus');
-    const receivableList = $('#receivableList');
-    const payableList = $('#payableList');
+    /* =========================================================
+       DOM
+    ========================================================= */
 
-    const currencySymbols = { KRW: '₩', VND: '₫' };
+    const $ = (selector) =>
+      document.querySelector(selector);
+
+    const datePicker =
+      $('#datePicker');
+
+    const dateTitle =
+      $('#dateTitle');
+
+    const expenseRows =
+      $('#expenseRows');
+
+    const incomeRows =
+      $('#incomeRows');
+
+    const totalValue =
+      $('#totalValue');
+
+    const monthlyValue =
+      $('#monthlyValue');
+
+    const monthlyMonth =
+      $('#monthlyMonth');
+
+    const cashBalanceValue =
+      $('#cashBalanceValue');
+
+    const bankBalanceValue =
+      $('#bankBalanceValue');
+
+    const balanceValue =
+      $('#balanceValue');
+
+    const saveStatus =
+      $('#saveStatus');
+
+    const receivableList =
+      $('#receivableList');
+
+    const payableList =
+      $('#payableList');
+
+
+    const currencySymbols = {
+      KRW: '₩',
+      VND: '₫'
+    };
+
+
+    /* =========================================================
+       DATE
+    ========================================================= */
 
     function getTodayKey() {
       const now = new Date();
-      const y = now.getFullYear();
-      const m = String(now.getMonth() + 1).padStart(2, '0');
-      const d = String(now.getDate()).padStart(2, '0');
+
+      const y =
+        now.getFullYear();
+
+      const m =
+        String(now.getMonth() + 1)
+          .padStart(2, '0');
+
+      const d =
+        String(now.getDate())
+          .padStart(2, '0');
+
       return `${y}-${m}-${d}`;
     }
 
+
     function formatDateVi(dateKey) {
-      const [y, m, d] = dateKey.split('-');
+      const [y, m, d] =
+        dateKey.split('-');
+
       return `${d}/${m}/${y}`;
     }
+
+
+    /* =========================================================
+       DAY DATA
+    ========================================================= */
 
     function createEmptyDay(date) {
       return {
         date,
-        expenses: Array.from({ length: INITIAL_EXPENSE_ROWS }, (_, index) => ({
-          id: `exp_${date}_${index + 1}`,
-          item: '',
-          amount: 0
-        })),
+
+        expenses:
+          Array.from(
+            {
+              length: INITIAL_EXPENSE_ROWS
+            },
+            (_, index) => ({
+              id:
+                `exp_${date}_${index + 1}`,
+
+              item: '',
+
+              amount: 0,
+
+              paymentMethod: 'cash'
+            })
+          ),
+
+        /*
+          Tiền vào không còn lưu theo ngày.
+          Tiền vào được lưu theo tháng.
+        */
         incomes: [],
+
         total: 0,
-        notes: { receivable: [], payable: [] }
+
+        notes: {
+          receivable: [],
+          payable: []
+        }
       };
     }
 
+
     function normalizeDay(date, raw) {
-      const base = createEmptyDay(date);
-      if (!raw || typeof raw !== 'object') return base;
+      const base =
+        createEmptyDay(date);
 
-      const expenses = Array.isArray(raw.expenses) ? raw.expenses : [];
-      base.expenses = expenses.map((item, index) => ({
-        id: String(item?.id || `exp_${date}_${index + 1}`),
-        item: String(item?.item || ''),
-        amount: toNumber(item?.amount)
-      }));
-
-      while (base.expenses.length < INITIAL_EXPENSE_ROWS) {
-        const i = base.expenses.length + 1;
-        base.expenses.push({ id: `exp_${date}_${i}`, item: '', amount: 0 });
+      if (
+        !raw ||
+        typeof raw !== 'object'
+      ) {
+        return base;
       }
 
-      // Tiền vào hiện được quản lý theo tháng, không còn theo từng ngày.
+
+      /* =========================
+         EXPENSES
+      ========================== */
+
+      const expenses =
+        Array.isArray(raw.expenses)
+          ? raw.expenses
+          : [];
+
+      base.expenses =
+        expenses.map(
+          (item, index) => ({
+            id:
+              String(
+                item?.id ||
+                `exp_${date}_${index + 1}`
+              ),
+
+            item:
+              String(item?.item || ''),
+
+            amount:
+              toNumber(item?.amount),
+
+            /*
+              Dữ liệu cũ không có paymentMethod
+              sẽ mặc định là cash.
+            */
+            paymentMethod:
+              item?.paymentMethod === 'bank'
+                ? 'bank'
+                : 'cash'
+          })
+        );
+
+
+      while (
+        base.expenses.length <
+        INITIAL_EXPENSE_ROWS
+      ) {
+        const i =
+          base.expenses.length + 1;
+
+        base.expenses.push({
+          id:
+            `exp_${date}_${i}`,
+
+          item: '',
+
+          amount: 0,
+
+          paymentMethod: 'cash'
+        });
+      }
+
+
+      /*
+        Tiền vào hiện được quản lý
+        theo tháng.
+      */
       base.incomes = [];
 
+
+      /* =========================
+         NOTES
+      ========================== */
+
       base.notes = {
-        receivable: normalizeNotes(raw?.notes?.receivable, 'rec', date),
-        payable: normalizeNotes(raw?.notes?.payable, 'pay', date)
+        receivable:
+          normalizeNotes(
+            raw?.notes?.receivable,
+            'rec',
+            date
+          ),
+
+        payable:
+          normalizeNotes(
+            raw?.notes?.payable,
+            'pay',
+            date
+          )
       };
-      base.total = sumExpenses(base.expenses);
+
+
+      base.total =
+        sumExpenses(base.expenses);
+
       return base;
     }
 
-    function normalizeNotes(list, prefix, date) {
-      if (!Array.isArray(list)) return [];
-      return list.map((note, index) => ({
-        id: String(note?.id || `${prefix}_${date}_${index + 1}`),
-        content: String(note?.content || ''),
-        amount: toNumber(note?.amount),
-        isDone: Boolean(note?.isDone)
-      }));
+
+    /* =========================================================
+       NOTES
+    ========================================================= */
+
+    function normalizeNotes(
+      list,
+      prefix,
+      date
+    ) {
+      if (!Array.isArray(list)) {
+        return [];
+      }
+
+      return list.map(
+        (note, index) => ({
+          id:
+            String(
+              note?.id ||
+              `${prefix}_${date}_${index + 1}`
+            ),
+
+          content:
+            String(
+              note?.content || ''
+            ),
+
+          amount:
+            toNumber(note?.amount),
+
+          isDone:
+            Boolean(note?.isDone),
+
+          /*
+            Dữ liệu cũ mặc định cash.
+          */
+          paymentMethod:
+            note?.paymentMethod === 'bank'
+              ? 'bank'
+              : 'cash'
+        })
+      );
     }
+
+
+    /* =========================================================
+       LOAD DATA
+    ========================================================= */
 
     function loadAllData() {
       try {
-        const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        return raw && typeof raw === 'object' ? raw : {};
+        const raw =
+          JSON.parse(
+            localStorage.getItem(
+              STORAGE_KEY
+            ) || '{}'
+          );
+
+        return raw &&
+          typeof raw === 'object'
+          ? raw
+          : {};
+
       } catch {
         return {};
       }
     }
 
-    function getMonthKey(dateKey = state.selectedDate) {
+
+    function getMonthKey(
+      dateKey = state.selectedDate
+    ) {
       return dateKey.slice(0, 7);
     }
+
+
+    /* =========================================================
+       MONTH DATA
+    ========================================================= */
 
     function createEmptyMonth(month) {
       return {
         month,
-        incomes: Array.from({ length: INITIAL_EXPENSE_ROWS }, (_, index) => ({
-          id: `inc_${month}_${index + 1}`,
-          item: '',
-          amount: 0
-        }))
+
+        incomes:
+          Array.from(
+            {
+              length: INITIAL_EXPENSE_ROWS
+            },
+            (_, index) => ({
+              id:
+                `inc_${month}_${index + 1}`,
+
+              item: '',
+
+              amount: 0,
+
+              paymentMethod: 'cash'
+            })
+          )
       };
     }
 
-    function normalizeMonth(month, raw) {
-      const base = createEmptyMonth(month);
-      if (!raw || typeof raw !== 'object') return base;
-      const incomes = Array.isArray(raw.incomes) ? raw.incomes : [];
-      base.incomes = incomes.map((item, index) => ({
-        id: String(item?.id || `inc_${month}_${index + 1}`),
-        item: String(item?.item || ''),
-        amount: toNumber(item?.amount)
-      }));
-      while (base.incomes.length < INITIAL_EXPENSE_ROWS) {
-        const i = base.incomes.length + 1;
-        base.incomes.push({ id: `inc_${month}_${i}`, item: '', amount: 0 });
+
+    function normalizeMonth(
+      month,
+      raw
+    ) {
+      const base =
+        createEmptyMonth(month);
+
+      if (
+        !raw ||
+        typeof raw !== 'object'
+      ) {
+        return base;
       }
+
+      const incomes =
+        Array.isArray(raw.incomes)
+          ? raw.incomes
+          : [];
+
+      base.incomes =
+        incomes.map(
+          (item, index) => ({
+            id:
+              String(
+                item?.id ||
+                `inc_${month}_${index + 1}`
+              ),
+
+            item:
+              String(item?.item || ''),
+
+            amount:
+              toNumber(item?.amount),
+
+            /*
+              Dữ liệu cũ mặc định cash.
+            */
+            paymentMethod:
+              item?.paymentMethod === 'bank'
+                ? 'bank'
+                : 'cash'
+          })
+        );
+
+
+      while (
+        base.incomes.length <
+        INITIAL_EXPENSE_ROWS
+      ) {
+        const i =
+          base.incomes.length + 1;
+
+        base.incomes.push({
+          id:
+            `inc_${month}_${i}`,
+
+          item: '',
+
+          amount: 0,
+
+          paymentMethod: 'cash'
+        });
+      }
+
       return base;
     }
 
+
+    /* =========================================================
+       MONTHLY INCOME
+    ========================================================= */
+
     function loadMonthlyIncomes() {
       try {
-        const raw = JSON.parse(localStorage.getItem(STORAGE_KEY + '-monthly-incomes') || '{}');
-        if (raw && typeof raw === 'object' && Object.keys(raw).length) return raw;
+        const raw =
+          JSON.parse(
+            localStorage.getItem(
+              STORAGE_KEY +
+              '-monthly-incomes'
+            ) || '{}'
+          );
+
+        if (
+          raw &&
+          typeof raw === 'object' &&
+          Object.keys(raw).length
+        ) {
+          return raw;
+        }
+
       } catch {}
 
-      // Migration: chuyển dữ liệu tiền vào kiểu cũ (theo ngày) sang tháng.
+
+      /*
+        Migration:
+        chuyển tiền vào kiểu cũ
+        theo ngày sang theo tháng.
+      */
+
       const migrated = {};
+
+
       try {
-        const rawDays = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        Object.entries(rawDays || {}).forEach(([date, rawDay]) => {
-          const old = Array.isArray(rawDay?.incomes) ? rawDay.incomes : [];
-          const meaningful = old.filter(row => String(row?.item || '').trim() || toNumber(row?.amount));
-          if (!meaningful.length) return;
-          const month = date.slice(0, 7);
-          if (!migrated[month]) migrated[month] = createEmptyMonth(month);
-          meaningful.forEach((row, index) => {
-            if (!migrated[month].incomes[index]) migrated[month].incomes[index] = { id: `inc_${month}_${Date.now()}_${index}`, item: '', amount: 0 };
-            const target = migrated[month].incomes[index];
-            if (!target.item && !target.amount) {
-              target.item = String(row?.item || '');
-              target.amount = toNumber(row?.amount);
+        const rawDays =
+          JSON.parse(
+            localStorage.getItem(
+              STORAGE_KEY
+            ) || '{}'
+          );
+
+
+        Object.entries(
+          rawDays || {}
+        ).forEach(
+          ([date, rawDay]) => {
+
+            const old =
+              Array.isArray(
+                rawDay?.incomes
+              )
+                ? rawDay.incomes
+                : [];
+
+
+            const meaningful =
+              old.filter(
+                row =>
+                  String(
+                    row?.item || ''
+                  ).trim() ||
+                  toNumber(row?.amount)
+              );
+
+
+            if (!meaningful.length) {
+              return;
             }
-          });
-        });
+
+
+            const month =
+              date.slice(0, 7);
+
+
+            if (!migrated[month]) {
+              migrated[month] =
+                createEmptyMonth(month);
+            }
+
+
+            meaningful.forEach(
+              (row, index) => {
+
+                if (
+                  !migrated[month]
+                    .incomes[index]
+                ) {
+                  migrated[month]
+                    .incomes[index] = {
+                      id:
+                        `inc_${month}_${Date.now()}_${index}`,
+
+                      item: '',
+
+                      amount: 0,
+
+                      paymentMethod:
+                        'cash'
+                    };
+                }
+
+
+                const target =
+                  migrated[month]
+                    .incomes[index];
+
+
+                if (
+                  !target.item &&
+                  !target.amount
+                ) {
+                  target.item =
+                    String(
+                      row?.item || ''
+                    );
+
+                  target.amount =
+                    toNumber(
+                      row?.amount
+                    );
+
+                  target.paymentMethod =
+                    row?.paymentMethod ===
+                    'bank'
+                      ? 'bank'
+                      : 'cash';
+                }
+              }
+            );
+          }
+        );
+
       } catch {}
+
+
       return migrated;
     }
 
+
     function getCurrentMonth() {
-      const month = getMonthKey();
-      if (!state.monthlyIncomes[month]) state.monthlyIncomes[month] = createEmptyMonth(month);
-      state.monthlyIncomes[month] = normalizeMonth(month, state.monthlyIncomes[month]);
+      const month =
+        getMonthKey();
+
+
+      if (
+        !state.monthlyIncomes[month]
+      ) {
+        state.monthlyIncomes[month] =
+          createEmptyMonth(month);
+      }
+
+
+      state.monthlyIncomes[month] =
+        normalizeMonth(
+          month,
+          state.monthlyIncomes[month]
+        );
+
+
       return state.monthlyIncomes[month];
     }
 
+
+    /* =========================================================
+       SETTINGS
+    ========================================================= */
+
     function loadSettings() {
       try {
-        const raw = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
-        if (raw.currency === 'VND' || raw.currency === 'KRW') state.currency = raw.currency;
+        const raw =
+          JSON.parse(
+            localStorage.getItem(
+              SETTINGS_KEY
+            ) || '{}'
+          );
+
+        if (
+          raw.currency === 'VND' ||
+          raw.currency === 'KRW'
+        ) {
+          state.currency =
+            raw.currency;
+        }
+
       } catch {}
     }
 
+
+    /* =========================================================
+       SAVE
+    ========================================================= */
+
     function saveAllData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.data));
-      localStorage.setItem(STORAGE_KEY + '-monthly-incomes', JSON.stringify(state.monthlyIncomes));
-      localStorage.setItem(SETTINGS_KEY, JSON.stringify({ currency: state.currency }));
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(state.data)
+      );
+
+      localStorage.setItem(
+        STORAGE_KEY +
+          '-monthly-incomes',
+        JSON.stringify(
+          state.monthlyIncomes
+        )
+      );
+
+      localStorage.setItem(
+        SETTINGS_KEY,
+        JSON.stringify({
+          currency:
+            state.currency
+        })
+      );
+
       flashSaved();
     }
 
+
     let saveTimer;
+
+
     function flashSaved() {
-      saveStatus.textContent = 'Đã tự động lưu';
+      saveStatus.textContent =
+        'Đã tự động lưu';
+
       clearTimeout(saveTimer);
-      saveTimer = setTimeout(() => {
-        saveStatus.textContent = 'Dữ liệu tự động lưu trên thiết bị';
-      }, 1200);
+
+      saveTimer =
+        setTimeout(
+          () => {
+            saveStatus.textContent =
+              'Dữ liệu tự động lưu trên thiết bị';
+          },
+          1200
+        );
     }
+
+
+    /* =========================================================
+       CURRENT DAY
+    ========================================================= */
 
     function getCurrentDay() {
-      if (!state.data[state.selectedDate]) {
-        state.data[state.selectedDate] = createEmptyDay(state.selectedDate);
+      if (
+        !state.data[
+          state.selectedDate
+        ]
+      ) {
+        state.data[
+          state.selectedDate
+        ] =
+          createEmptyDay(
+            state.selectedDate
+          );
       }
-      state.data[state.selectedDate] = normalizeDay(state.selectedDate, state.data[state.selectedDate]);
-      return state.data[state.selectedDate];
+
+
+      state.data[
+        state.selectedDate
+      ] =
+        normalizeDay(
+          state.selectedDate,
+          state.data[
+            state.selectedDate
+          ]
+        );
+
+
+      return state.data[
+        state.selectedDate
+      ];
     }
+
+
+    /* =========================================================
+       NUMBER / MONEY
+    ========================================================= */
 
     function toNumber(value) {
-      if (typeof value === 'number') return Number.isFinite(value) ? Math.max(0, Math.round(value)) : 0;
-      const digits = String(value ?? '').replace(/[^0-9]/g, '');
-      return digits ? Number(digits) : 0;
+      if (
+        typeof value === 'number'
+      ) {
+        return Number.isFinite(value)
+          ? Math.max(
+              0,
+              Math.round(value)
+            )
+          : 0;
+      }
+
+      const digits =
+        String(value ?? '')
+          .replace(
+            /[^0-9]/g,
+            ''
+          );
+
+      return digits
+        ? Number(digits)
+        : 0;
     }
+
 
     function sumExpenses(expenses) {
-      return expenses.reduce((sum, row) => sum + toNumber(row.amount), 0);
+      return expenses.reduce(
+        (sum, row) =>
+          sum +
+          toNumber(row.amount),
+        0
+      );
     }
+
 
     function sumIncomes(incomes) {
-      return incomes.reduce((sum, row) => sum + toNumber(row.amount), 0);
+      return incomes.reduce(
+        (sum, row) =>
+          sum +
+          toNumber(row.amount),
+        0
+      );
     }
 
+
     function formatMoney(value) {
-      const number = Math.max(0, Math.round(toNumber(value)));
-      return new Intl.NumberFormat('vi-VN').format(number);
+      const number =
+        Math.max(
+          0,
+          Math.round(
+            toNumber(value)
+          )
+        );
+
+      return new Intl.NumberFormat(
+        'vi-VN'
+      ).format(number);
     }
+
 
     function moneyLabel(value) {
       return `${formatMoney(value)} ${state.currency}`;
     }
 
-    function buildMoneyRow(row, index, kind) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'table-row expense-row';
-      wrapper.dataset.id = row.id;
-      const isIncome = kind === 'income';
-      const prefix = isIncome ? 'Khoản tiền vào' : 'Nội dung chi tiêu';
-      const inputClass = isIncome ? 'income' : 'expense';
+
+    /* =========================================================
+       MONEY ROW
+    ========================================================= */
+
+    function buildMoneyRow(
+      row,
+      index,
+      kind
+    ) {
+      const wrapper =
+        document.createElement(
+          'div'
+        );
+
+      wrapper.className =
+        'table-row expense-row';
+
+      wrapper.dataset.id =
+        row.id;
+
+
+      const isIncome =
+        kind === 'income';
+
+      const prefix =
+        isIncome
+          ? 'Khoản tiền vào'
+          : 'Nội dung chi tiêu';
+
+      const inputClass =
+        isIncome
+          ? 'income'
+          : 'expense';
+
+      const method =
+        row.paymentMethod === 'bank'
+          ? 'bank'
+          : 'cash';
+
+
       wrapper.innerHTML = `
         <div>
-          <input class="text-input ${inputClass}-item" type="text" placeholder="Nhập nội dung..." value="${escapeHtml(row.item)}" data-index="${index}" aria-label="${prefix} ${index + 1}" />
+          <input
+            class="text-input ${inputClass}-item"
+            type="text"
+            placeholder="Nhập nội dung..."
+            value="${escapeHtml(row.item)}"
+            data-index="${index}"
+            aria-label="${prefix} ${index + 1}"
+          />
         </div>
+
         <div>
-          <div class="money-cell"><input class="money-input ${inputClass}-amount" type="text" inputmode="numeric" autocomplete="off" placeholder="0" value="${row.amount ? formatMoney(row.amount) : ''}" data-index="${index}" aria-label="Số tiền ${index + 1}" /><span class="currency-unit">${state.currency}</span></div>
+          <div class="money-cell">
+
+            <input
+              class="money-input ${inputClass}-amount"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="0"
+              value="${row.amount ? formatMoney(row.amount) : ''}"
+              data-index="${index}"
+              aria-label="Số tiền ${index + 1}"
+            />
+
+            <select
+              class="payment-method ${inputClass}-payment-method"
+              data-index="${index}"
+              aria-label="Hình thức thanh toán"
+            >
+              <option
+                value="cash"
+                ${method === 'cash' ? 'selected' : ''}
+              >
+                Tiền mặt
+              </option>
+
+              <option
+                value="bank"
+                ${method === 'bank' ? 'selected' : ''}
+              >
+                Tài khoản
+              </option>
+            </select>
+
+            <span class="currency-unit">
+              ${state.currency}
+            </span>
+
+          </div>
         </div>
       `;
+
+
       return wrapper;
     }
 
+
+    /* =========================================================
+       RENDER EXPENSES
+    ========================================================= */
+
     function renderExpenses() {
-      const day = getCurrentDay();
+      const day =
+        getCurrentDay();
+
+
+      /* CHI TIÊU */
+
       expenseRows.innerHTML = '';
-      day.expenses.forEach((row, index) => expenseRows.appendChild(buildMoneyRow(row, index, 'expense')));
+
+      day.expenses.forEach(
+        (row, index) =>
+          expenseRows.appendChild(
+            buildMoneyRow(
+              row,
+              index,
+              'expense'
+            )
+          )
+      );
+
+
+      /* TIỀN VÀO */
+
       incomeRows.innerHTML = '';
-      getCurrentMonth().incomes.forEach((row, index) => incomeRows.appendChild(buildMoneyRow(row, index, 'income')));
+
+      getCurrentMonth()
+        .incomes
+        .forEach(
+          (row, index) =>
+            incomeRows.appendChild(
+              buildMoneyRow(
+                row,
+                index,
+                'income'
+              )
+            )
+        );
+
+
       updateTotal();
       updateMonthlySummary();
     }
 
-    function updateTotal() {
-      const day = getCurrentDay();
-      const expenses = sumExpenses(day.expenses);
-      const incomes = sumIncomes(getCurrentMonth().incomes);
 
-      // Mỗi bảng chỉ tính tổng của chính bảng đó.
-      day.total = expenses;
-      totalValue.textContent = moneyLabel(expenses);
-      totalValue.classList.remove('net-positive', 'net-negative');
+    /* =========================================================
+       GET MONTH RECORDS
+    ========================================================= */
 
-      const incomeTotalValue = $('#incomeTotalValue');
-      incomeTotalValue.textContent = moneyLabel(incomes);
+    function getMonthRecords(month) {
+      const expenses = [];
+      const receivables = [];
 
-      updateBalance(incomes);
+
+      Object.entries(
+        state.data
+      ).forEach(
+        ([date, raw]) => {
+
+          if (
+            !date.startsWith(month)
+          ) {
+            return;
+          }
+
+
+          const day =
+            normalizeDay(
+              date,
+              raw
+            );
+
+
+          expenses.push(
+            ...day.expenses
+          );
+
+
+          receivables.push(
+            ...day.notes.receivable
+          );
+        }
+      );
+
+
+      return {
+        expenses,
+        receivables
+      };
     }
+
+
+    /* =========================================================
+       BALANCE BY WALLET
+    ========================================================= */
+
+    function signedBalanceFor(
+      type,
+      month
+    ) {
+      const monthData =
+        getCurrentMonth();
+
+
+      const {
+        expenses,
+        receivables
+      } =
+        getMonthRecords(
+          month
+        );
+
+
+      /*
+        TIỀN VÀO
+      */
+
+      const incomeTotal =
+        monthData.incomes
+          .filter(
+            row =>
+              (
+                row.paymentMethod ||
+                'cash'
+              ) === type
+          )
+          .reduce(
+            (sum, row) =>
+              sum +
+              toNumber(
+                row.amount
+              ),
+            0
+          );
+
+
+      /*
+        CHI TIÊU
+      */
+
+      const expenseTotal =
+        expenses
+          .filter(
+            row =>
+              (
+                row.paymentMethod ||
+                'cash'
+              ) === type
+          )
+          .reduce(
+            (sum, row) =>
+              sum +
+              toNumber(
+                row.amount
+              ),
+            0
+          );
+
+
+      /*
+        TIỀN NGƯỜI KHÁC CẦN TRẢ
+      */
+
+      const receivableEffect =
+        receivables
+          .filter(
+            note =>
+              (
+                note.paymentMethod ||
+                'cash'
+              ) === type
+          )
+          .reduce(
+            (sum, note) => {
+
+              const amount =
+                toNumber(
+                  note.amount
+                );
+
+
+              /*
+                Chưa hoàn thành:
+                tiền đã bỏ ra để trả hộ
+                => TRỪ khỏi ví
+
+                Đã hoàn thành:
+                người kia đã trả lại
+                => CỘNG trở lại ví
+              */
+
+              return (
+                sum +
+                (
+                  note.isDone
+                    ? amount
+                    : -amount
+                )
+              );
+            },
+            0
+          );
+
+
+      return (
+        incomeTotal -
+        expenseTotal +
+        receivableEffect
+      );
+    }
+
+
+    /* =========================================================
+       DAILY TOTAL
+    ========================================================= */
+
+    function updateTotal() {
+      const day =
+        getCurrentDay();
+
+
+      const expenses =
+        sumExpenses(
+          day.expenses
+        );
+
+
+      const incomes =
+        sumIncomes(
+          getCurrentMonth()
+            .incomes
+        );
+
+
+      /*
+        Tổng tiền của bảng Chi tiêu
+      */
+
+      day.total =
+        expenses;
+
+
+      totalValue.textContent =
+        moneyLabel(
+          expenses
+        );
+
+
+      totalValue.classList.remove(
+        'net-positive',
+        'net-negative'
+      );
+
+
+      /*
+        Tổng tiền của bảng Tiền vào
+      */
+
+      const incomeTotalValue =
+        $('#incomeTotalValue');
+
+
+      incomeTotalValue.textContent =
+        moneyLabel(
+          incomes
+        );
+
+
+      updateBalance();
+    }
+
+
+    /* =========================================================
+       MONTHLY SUMMARY
+    ========================================================= */
 
     function updateMonthlySummary() {
-      const [year, month] = state.selectedDate.split('-');
-      const prefix = `${year}-${month}`;
-      let monthlySpent = 0;
+      const [
+        year,
+        month
+      ] =
+        state.selectedDate.split(
+          '-'
+        );
 
-      Object.entries(state.data).forEach(([date, raw]) => {
-        if (date.startsWith(prefix)) {
-          const day = normalizeDay(date, raw);
-          monthlySpent += sumExpenses(day.expenses);
-        }
-      });
 
-      monthlyValue.textContent = moneyLabel(monthlySpent);
-      monthlyMonth.textContent = `Tháng ${month}/${year}`;
-      updateBalance(sumIncomes(getCurrentMonth().incomes), monthlySpent);
+      const monthKey =
+        `${year}-${month}`;
+
+
+      const {
+        expenses
+      } =
+        getMonthRecords(
+          monthKey
+        );
+
+
+      const monthlySpent =
+        sumExpenses(
+          expenses
+        );
+
+
+      monthlyValue.textContent =
+        moneyLabel(
+          monthlySpent
+        );
+
+
+      monthlyMonth.textContent =
+        `Tháng ${month}/${year}`;
+
+
+      updateBalance();
     }
 
-    function updateBalance(incomes, monthlySpent = null) {
-      if (!balanceValue) return;
-      if (monthlySpent === null) {
-        const [year, month] = state.selectedDate.split('-');
-        const prefix = `${year}-${month}`;
-        monthlySpent = 0;
-        Object.entries(state.data).forEach(([date, raw]) => {
-          if (date.startsWith(prefix)) {
-            const day = normalizeDay(date, raw);
-            monthlySpent += sumExpenses(day.expenses);
-          }
-        });
+
+    /* =========================================================
+       BALANCE UI
+    ========================================================= */
+
+    function updateBalance() {
+      if (!balanceValue) {
+        return;
       }
-      const balance = toNumber(incomes) - toNumber(monthlySpent);
-      balanceValue.textContent = `${balance < 0 ? '-' : ''}${formatMoney(Math.abs(balance))} ${state.currency}`;
-      balanceValue.classList.toggle('net-positive', balance > 0);
-      balanceValue.classList.toggle('net-negative', balance < 0);
+
+
+      const month =
+        getMonthKey();
+
+
+      const cash =
+        signedBalanceFor(
+          'cash',
+          month
+        );
+
+
+      const bank =
+        signedBalanceFor(
+          'bank',
+          month
+        );
+
+
+      const total =
+        cash + bank;
+
+
+      const renderSigned =
+        value =>
+          `${
+            value < 0
+              ? '-'
+              : ''
+          }${formatMoney(
+            Math.abs(value)
+          )} ${state.currency}`;
+
+
+      cashBalanceValue.textContent =
+        renderSigned(cash);
+
+
+      bankBalanceValue.textContent =
+        renderSigned(bank);
+
+
+      balanceValue.textContent =
+        renderSigned(total);
+
+
+      [
+        cashBalanceValue,
+        bankBalanceValue,
+        balanceValue
+      ].forEach(
+        el => {
+
+          el.classList.toggle(
+            'net-positive',
+            toNumber(
+              el.textContent
+            ) > 0 &&
+            !el.textContent.startsWith(
+              '-'
+            )
+          );
+
+
+          el.classList.toggle(
+            'net-negative',
+            el.textContent.startsWith(
+              '-'
+            )
+          );
+        }
+      );
     }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
 
     function updateHeader() {
-      dateTitle.textContent = `Thông tin chi tiêu ngày ${formatDateVi(state.selectedDate)}`;
-      datePicker.value = state.selectedDate;
+      dateTitle.textContent =
+        `Thông tin chi tiêu ngày ${formatDateVi(
+          state.selectedDate
+        )}`;
+
+
+      datePicker.value =
+        state.selectedDate;
     }
+
+
+    /* =========================================================
+       CURRENCY
+    ========================================================= */
 
     function renderCurrencyButtons() {
-      document.querySelectorAll('[data-currency]').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.currency === state.currency);
-      });
+      document
+        .querySelectorAll(
+          '[data-currency]'
+        )
+        .forEach(
+          btn => {
+
+            btn.classList.toggle(
+              'active',
+              btn.dataset.currency ===
+                state.currency
+            );
+          }
+        );
     }
 
-    function buildNote(note, type, index) {
-      const item = document.createElement('div');
-      item.className = 'note-item';
-      item.dataset.id = note.id;
+
+    /* =========================================================
+       NOTES
+    ========================================================= */
+
+    function buildNote(
+      note,
+      type,
+      index
+    ) {
+      const item =
+        document.createElement(
+          'div'
+        );
+
+      item.className =
+        'note-item';
+
+      item.dataset.id =
+        note.id;
+
+
+      const method =
+        note.paymentMethod === 'bank'
+          ? 'bank'
+          : 'cash';
+
+
+      /*
+        Chỉ receivable có
+        payment method vì đây là
+        khoản tiền đã ứng từ ví.
+      */
+
+      const paymentControl =
+        type === 'receivable'
+          ? `
+            <select
+              class="payment-method note-payment-method"
+              data-note-type="${type}"
+              data-note-index="${index}"
+              aria-label="Hình thức nhận lại tiền"
+            >
+
+              <option
+                value="cash"
+                ${method === 'cash'
+                  ? 'selected'
+                  : ''}
+              >
+                Tiền mặt
+              </option>
+
+              <option
+                value="bank"
+                ${method === 'bank'
+                  ? 'selected'
+                  : ''}
+              >
+                Tài khoản
+              </option>
+
+            </select>
+          `
+          : '';
+
+
       item.innerHTML = `
-        <input class="note-checkbox" type="checkbox" ${note.isDone ? 'checked' : ''} data-note-type="${type}" data-note-index="${index}" aria-label="Đánh dấu đã thanh toán" />
-        <input class="note-text ${note.isDone ? 'done' : ''}" type="text" value="${escapeHtml(note.content)}" placeholder="Nội dung khoản tiền..." data-note-type="${type}" data-note-index="${index}" aria-label="Nội dung" />
-        <div class="money-cell note-money-cell"><input class="note-amount" type="text" inputmode="numeric" value="${note.amount ? formatMoney(note.amount) : ''}" placeholder="0" data-note-type="${type}" data-note-index="${index}" aria-label="Số tiền" /><span class="currency-unit">${state.currency}</span></div>
-        <button type="button" class="icon-btn delete-note" title="Xoá khoản" data-delete-note="${type}" data-note-index="${index}" aria-label="Xoá khoản">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6m4 4v6m6-6v6"/></svg>
+
+        <input
+          class="note-checkbox"
+          type="checkbox"
+          ${note.isDone ? 'checked' : ''}
+          data-note-type="${type}"
+          data-note-index="${index}"
+          aria-label="Đánh dấu đã thanh toán"
+        />
+
+
+        <input
+          class="note-text ${note.isDone ? 'done' : ''}"
+          type="text"
+          value="${escapeHtml(
+            note.content
+          )}"
+          placeholder="Nội dung khoản tiền..."
+          data-note-type="${type}"
+          data-note-index="${index}"
+          aria-label="Nội dung"
+        />
+
+
+        <div class="money-cell note-money-cell">
+
+          <input
+            class="note-amount"
+            type="text"
+            inputmode="numeric"
+            value="${
+              note.amount
+                ? formatMoney(
+                    note.amount
+                  )
+                : ''
+            }"
+            placeholder="0"
+            data-note-type="${type}"
+            data-note-index="${index}"
+            aria-label="Số tiền"
+          />
+
+          ${paymentControl}
+
+          <span class="currency-unit">
+            ${state.currency}
+          </span>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="icon-btn delete-note"
+          title="Xoá khoản"
+          data-delete-note="${type}"
+          data-note-index="${index}"
+          aria-label="Xoá khoản"
+        >
+
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6m4 4v6m6-6v6"/>
+          </svg>
+
         </button>
       `;
+
+
       return item;
     }
 
+
     function renderNotes() {
-      const day = getCurrentDay();
-      renderNoteList(receivableList, day.notes.receivable, 'receivable');
-      renderNoteList(payableList, day.notes.payable, 'payable');
+      const day =
+        getCurrentDay();
+
+
+      renderNoteList(
+        receivableList,
+        day.notes.receivable,
+        'receivable'
+      );
+
+
+      renderNoteList(
+        payableList,
+        day.notes.payable,
+        'payable'
+      );
     }
 
-    function renderNoteList(container, notes, type) {
+
+    function renderNoteList(
+      container,
+      notes,
+      type
+    ) {
       container.innerHTML = '';
+
+
       if (!notes.length) {
-        const empty = document.createElement('div');
-        empty.className = 'note-empty';
-        empty.textContent = 'Chưa có khoản nào. Thêm một khoản để bắt đầu.';
-        container.appendChild(empty);
+
+        const empty =
+          document.createElement(
+            'div'
+          );
+
+        empty.className =
+          'note-empty';
+
+        empty.textContent =
+          'Chưa có khoản nào. Thêm một khoản để bắt đầu.';
+
+        container.appendChild(
+          empty
+        );
+
         return;
       }
-      notes.forEach((note, index) => container.appendChild(buildNote(note, type, index)));
+
+
+      notes.forEach(
+        (note, index) =>
+          container.appendChild(
+            buildNote(
+              note,
+              type,
+              index
+            )
+          )
+      );
     }
+
+
+    /* =========================================================
+       ADD EXPENSE
+    ========================================================= */
 
     function addExpenseRow() {
-      const day = getCurrentDay();
-      const nextIndex = day.expenses.length + 1;
-      day.expenses.push({ id: `exp_${Date.now()}`, item: '', amount: 0 });
+      const day =
+        getCurrentDay();
+
+
+      day.expenses.push({
+        id:
+          `exp_${Date.now()}`,
+
+        item: '',
+
+        amount: 0,
+
+        paymentMethod:
+          'cash'
+      });
+
+
       renderExpenses();
       saveAllData();
-      requestAnimationFrame(() => {
-        const inputs = expenseRows.querySelectorAll('.expense-item');
-        const target = inputs[inputs.length - 1];
-        target?.focus();
-        expenseRows.scrollTop = expenseRows.scrollHeight;
-      });
+
+
+      requestAnimationFrame(
+        () => {
+
+          const inputs =
+            expenseRows.querySelectorAll(
+              '.expense-item'
+            );
+
+
+          const target =
+            inputs[
+              inputs.length - 1
+            ];
+
+
+          target?.focus();
+
+
+          expenseRows.scrollTop =
+            expenseRows.scrollHeight;
+        }
+      );
     }
+
+
+    /* =========================================================
+       ADD INCOME
+    ========================================================= */
 
     function addIncomeRow() {
-      const month = getCurrentMonth();
-      month.incomes.push({ id: `inc_${Date.now()}`, item: '', amount: 0 });
+      const month =
+        getCurrentMonth();
+
+
+      month.incomes.push({
+        id:
+          `inc_${Date.now()}`,
+
+        item: '',
+
+        amount: 0,
+
+        paymentMethod:
+          'cash'
+      });
+
+
       renderExpenses();
       saveAllData();
-      requestAnimationFrame(() => {
-        const inputs = incomeRows.querySelectorAll('.income-item');
-        const target = inputs[inputs.length - 1];
-        target?.focus();
-        incomeRows.scrollTop = incomeRows.scrollHeight;
-      });
+
+
+      requestAnimationFrame(
+        () => {
+
+          const inputs =
+            incomeRows.querySelectorAll(
+              '.income-item'
+            );
+
+
+          const target =
+            inputs[
+              inputs.length - 1
+            ];
+
+
+          target?.focus();
+
+
+          incomeRows.scrollTop =
+            incomeRows.scrollHeight;
+        }
+      );
     }
+
+
+    /* =========================================================
+       ADD NOTE
+    ========================================================= */
 
     function addNote(type) {
-      const day = getCurrentDay();
+      const day =
+        getCurrentDay();
+
+
       day.notes[type].push({
-        id: `${type === 'receivable' ? 'rec' : 'pay'}_${Date.now()}`,
+        id:
+          `${
+            type === 'receivable'
+              ? 'rec'
+              : 'pay'
+          }_${Date.now()}`,
+
         content: '',
+
         amount: 0,
-        isDone: false
+
+        isDone: false,
+
+        paymentMethod:
+          'cash'
       });
+
+
       renderNotes();
       saveAllData();
-      requestAnimationFrame(() => {
-        const list = type === 'receivable' ? receivableList : payableList;
-        const inputs = list.querySelectorAll('.note-text');
-        inputs[inputs.length - 1]?.focus();
-      });
+
+
+      requestAnimationFrame(
+        () => {
+
+          const list =
+            type === 'receivable'
+              ? receivableList
+              : payableList;
+
+
+          const inputs =
+            list.querySelectorAll(
+              '.note-text'
+            );
+
+
+          inputs[
+            inputs.length - 1
+          ]?.focus();
+        }
+      );
     }
 
-    function deleteNote(type, index) {
-      const day = getCurrentDay();
-      day.notes[type].splice(index, 1);
+
+    /* =========================================================
+       DELETE NOTE
+    ========================================================= */
+
+    function deleteNote(
+      type,
+      index
+    ) {
+      const day =
+        getCurrentDay();
+
+
+      /*
+        Nếu receivable chưa hoàn thành,
+        việc xóa note sẽ tự động
+        loại khoản tiền bị trừ khỏi
+        số dư.
+      */
+
+      day.notes[type]
+        .splice(
+          index,
+          1
+        );
+
+
       renderNotes();
+
+      updateBalance();
+
       saveAllData();
     }
 
-    function handleMoneyTableInput(event, kind) {
-      const input = event.target;
-      const index = Number(input.dataset.index);
-      if (!Number.isInteger(index)) return;
-      const day = getCurrentDay();
-      const rows = kind === 'income' ? getCurrentMonth().incomes : day.expenses;
-      const prefix = kind === 'income' ? 'income' : 'expense';
-      if (!rows[index]) return;
 
-      if (input.classList.contains(`${prefix}-item`)) {
-        rows[index].item = input.value;
-      } else if (input.classList.contains(`${prefix}-amount`)) {
-        const numeric = toNumber(input.value);
-        rows[index].amount = numeric;
-        input.value = numeric ? formatMoney(numeric) : '';
-        updateTotal();
-        updateMonthlySummary();
+    /* =========================================================
+       MONEY TABLE INPUT
+    ========================================================= */
+
+    function handleMoneyTableInput(
+      event,
+      kind
+    ) {
+      const input =
+        event.target;
+
+
+      const index =
+        Number(
+          input.dataset.index
+        );
+
+
+      if (
+        !Number.isInteger(index)
+      ) {
+        return;
       }
+
+
+      const day =
+        getCurrentDay();
+
+
+      const rows =
+        kind === 'income'
+          ? getCurrentMonth()
+              .incomes
+          : day.expenses;
+
+
+      const prefix =
+        kind === 'income'
+          ? 'income'
+          : 'expense';
+
+
+      if (!rows[index]) {
+        return;
+      }
+
+
+      /* NỘI DUNG */
+
+      if (
+        input.classList.contains(
+          `${prefix}-item`
+        )
+      ) {
+
+        rows[index].item =
+          input.value;
+
+      }
+
+
+      /* SỐ TIỀN */
+
+      else if (
+        input.classList.contains(
+          `${prefix}-amount`
+        )
+      ) {
+
+        const numeric =
+          toNumber(
+            input.value
+          );
+
+
+        rows[index].amount =
+          numeric;
+
+
+        input.value =
+          numeric
+            ? formatMoney(
+                numeric
+              )
+            : '';
+      }
+
+
+      /* PAYMENT METHOD */
+
+      else if (
+        input.classList.contains(
+          `${prefix}-payment-method`
+        )
+      ) {
+
+        rows[index]
+          .paymentMethod =
+            input.value === 'bank'
+              ? 'bank'
+              : 'cash';
+      }
+
+
       updateTotal();
+
       updateMonthlySummary();
+
       saveAllData();
     }
 
-    function handleMoneyTableKeydown(event, kind) {
-      const input = event.target;
-      const prefix = kind === 'income' ? 'income' : 'expense';
-      if (!input.classList.contains(`${prefix}-item`) && !input.classList.contains(`${prefix}-amount`)) return;
-      if (event.key !== 'Enter') return;
-      const index = Number(input.dataset.index);
-      const day = getCurrentDay();
-      const rows = kind === 'income' ? getCurrentMonth().incomes : day.expenses;
-      const container = kind === 'income' ? incomeRows : expenseRows;
-      if (index === rows.length - 1) {
+
+    /* =========================================================
+       ENTER KEY
+    ========================================================= */
+
+    function handleMoneyTableKeydown(
+      event,
+      kind
+    ) {
+      const input =
+        event.target;
+
+
+      const prefix =
+        kind === 'income'
+          ? 'income'
+          : 'expense';
+
+
+      if (
+        !input.classList.contains(
+          `${prefix}-item`
+        ) &&
+        !input.classList.contains(
+          `${prefix}-amount`
+        )
+      ) {
+        return;
+      }
+
+
+      if (
+        event.key !== 'Enter'
+      ) {
+        return;
+      }
+
+
+      const index =
+        Number(
+          input.dataset.index
+        );
+
+
+      const day =
+        getCurrentDay();
+
+
+      const rows =
+        kind === 'income'
+          ? getCurrentMonth()
+              .incomes
+          : day.expenses;
+
+
+      const container =
+        kind === 'income'
+          ? incomeRows
+          : expenseRows;
+
+
+      /*
+        Nếu đang ở dòng cuối
+        => tạo dòng mới.
+      */
+
+      if (
+        index ===
+        rows.length - 1
+      ) {
+
         event.preventDefault();
-        kind === 'income' ? addIncomeRow() : addExpenseRow();
-      } else {
+
+
+        kind === 'income'
+          ? addIncomeRow()
+          : addExpenseRow();
+
+      }
+
+      /*
+        Nếu chưa phải dòng cuối
+        => chuyển xuống dòng kế tiếp.
+      */
+
+      else {
+
         event.preventDefault();
-        const next = container.querySelector(`.${prefix}-item[data-index="${index + 1}"]`);
+
+
+        const next =
+          container.querySelector(
+            `.${prefix}-item[data-index="${index + 1}"]`
+          );
+
+
         next?.focus();
       }
     }
 
-    function handleNoteInput(event) {
-      const el = event.target;
-      const type = el.dataset.noteType;
-      const index = Number(el.dataset.noteIndex);
-      if (!type || !Number.isInteger(index)) return;
-      const day = getCurrentDay();
-      const note = day.notes[type][index];
-      if (!note) return;
 
-      if (el.classList.contains('note-text')) {
-        note.content = el.value;
-      } else if (el.classList.contains('note-amount')) {
-        note.amount = toNumber(el.value);
-        el.value = note.amount ? formatMoney(note.amount) : '';
+    /* =========================================================
+       NOTE INPUT
+    ========================================================= */
+
+    function handleNoteInput(
+      event
+    ) {
+      const el =
+        event.target;
+
+
+      const type =
+        el.dataset.noteType;
+
+
+      const index =
+        Number(
+          el.dataset.noteIndex
+        );
+
+
+      if (
+        !type ||
+        !Number.isInteger(index)
+      ) {
+        return;
       }
+
+
+      const day =
+        getCurrentDay();
+
+
+      const note =
+        day.notes[type][index];
+
+
+      if (!note) {
+        return;
+      }
+
+
+      /* NỘI DUNG */
+
+      if (
+        el.classList.contains(
+          'note-text'
+        )
+      ) {
+
+        note.content =
+          el.value;
+      }
+
+
+      /* SỐ TIỀN */
+
+      else if (
+        el.classList.contains(
+          'note-amount'
+        )
+      ) {
+
+        note.amount =
+          toNumber(
+            el.value
+          );
+
+
+        el.value =
+          note.amount
+            ? formatMoney(
+                note.amount
+              )
+            : '';
+      }
+
+
+      updateBalance();
+
       saveAllData();
     }
 
-    function handleNoteChange(event) {
-      const el = event.target;
-      if (!el.classList.contains('note-checkbox')) return;
-      const type = el.dataset.noteType;
-      const index = Number(el.dataset.noteIndex);
-      const day = getCurrentDay();
-      const note = day.notes[type]?.[index];
-      if (!note) return;
-      note.isDone = el.checked;
-      renderNotes();
+
+    /* =========================================================
+       NOTE CHANGE
+    ========================================================= */
+
+    function handleNoteChange(
+      event
+    ) {
+      const el =
+        event.target;
+
+
+      const type =
+        el.dataset.noteType;
+
+
+      const index =
+        Number(
+          el.dataset.noteIndex
+        );
+
+
+      if (
+        !type ||
+        !Number.isInteger(index)
+      ) {
+        return;
+      }
+
+
+      const day =
+        getCurrentDay();
+
+
+      const note =
+        day.notes[type]?.[index];
+
+
+      if (!note) {
+        return;
+      }
+
+
+      /* CHECKBOX */
+
+      if (
+        el.classList.contains(
+          'note-checkbox'
+        )
+      ) {
+
+        note.isDone =
+          el.checked;
+
+
+        /*
+          Khi tick:
+          - isDone = true
+          - tiền được cộng trở lại ví.
+
+          Khi bỏ tick:
+          - isDone = false
+          - tiền lại bị trừ khỏi ví.
+        */
+
+        renderNotes();
+      }
+
+
+      /* PAYMENT METHOD */
+
+      else if (
+        el.classList.contains(
+          'note-payment-method'
+        )
+      ) {
+
+        note.paymentMethod =
+          el.value === 'bank'
+            ? 'bank'
+            : 'cash';
+
+      }
+
+
+      else {
+        return;
+      }
+
+
+      updateBalance();
+
       saveAllData();
     }
+
+
+    /* =========================================================
+       ESCAPE HTML
+    ========================================================= */
 
     function escapeHtml(value) {
       return String(value)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
+        .replaceAll(
+          '&',
+          '&amp;'
+        )
+        .replaceAll(
+          '<',
+          '&lt;'
+        )
+        .replaceAll(
+          '>',
+          '&gt;'
+        )
+        .replaceAll(
+          '"',
+          '&quot;'
+        )
+        .replaceAll(
+          "'",
+          '&#039;'
+        );
     }
 
-    datePicker.addEventListener('change', () => {
-      state.selectedDate = datePicker.value || getTodayKey();
-      getCurrentDay();
-      updateHeader();
-      renderExpenses();
-      renderNotes();
-      saveAllData();
-    });
 
-    $('#addExpenseBtn').addEventListener('click', addExpenseRow);
-    $('#addIncomeBtn').addEventListener('click', addIncomeRow);
+    /* =========================================================
+       DATE CHANGE
+    ========================================================= */
 
-    expenseRows.addEventListener('input', event => handleMoneyTableInput(event, 'expense'));
-    expenseRows.addEventListener('keydown', event => handleMoneyTableKeydown(event, 'expense'));
-    incomeRows.addEventListener('input', event => handleMoneyTableInput(event, 'income'));
-    incomeRows.addEventListener('keydown', event => handleMoneyTableKeydown(event, 'income'));
-    [expenseRows, incomeRows].forEach(container => container.addEventListener('blur', event => {
-      if (event.target.classList.contains('expense-amount') || event.target.classList.contains('income-amount')) {
-        event.target.value = event.target.value ? formatMoney(event.target.value) : '';
-      }
-    }, true));
+    datePicker.addEventListener(
+      'change',
+      () => {
 
-    document.querySelectorAll('[data-currency]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.currency = btn.dataset.currency;
-        renderCurrencyButtons();
+        state.selectedDate =
+          datePicker.value ||
+          getTodayKey();
+
+
+        getCurrentDay();
+
+        updateHeader();
+
         renderExpenses();
+
         renderNotes();
+
         saveAllData();
-      });
-    });
+      }
+    );
 
-    document.querySelectorAll('[data-add-note]').forEach(btn => {
-      btn.addEventListener('click', () => addNote(btn.dataset.addNote));
-    });
 
-    document.querySelectorAll('.note-list').forEach(list => {
-      list.addEventListener('input', handleNoteInput);
-      list.addEventListener('change', handleNoteChange);
-      list.addEventListener('blur', event => {
-        if (event.target.classList.contains('note-amount')) {
-          event.target.value = event.target.value ? formatMoney(event.target.value) : '';
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    $('#addExpenseBtn')
+      .addEventListener(
+        'click',
+        addExpenseRow
+      );
+
+
+    $('#addIncomeBtn')
+      .addEventListener(
+        'click',
+        addIncomeRow
+      );
+
+
+    /* =========================================================
+       EXPENSE EVENTS
+    ========================================================= */
+
+    expenseRows.addEventListener(
+      'input',
+      event =>
+        handleMoneyTableInput(
+          event,
+          'expense'
+        )
+    );
+
+
+    expenseRows.addEventListener(
+      'change',
+      event =>
+        handleMoneyTableInput(
+          event,
+          'expense'
+        )
+    );
+
+
+    expenseRows.addEventListener(
+      'keydown',
+      event =>
+        handleMoneyTableKeydown(
+          event,
+          'expense'
+        )
+    );
+
+
+    /* =========================================================
+       INCOME EVENTS
+    ========================================================= */
+
+    incomeRows.addEventListener(
+      'input',
+      event =>
+        handleMoneyTableInput(
+          event,
+          'income'
+        )
+    );
+
+
+    incomeRows.addEventListener(
+      'change',
+      event =>
+        handleMoneyTableInput(
+          event,
+          'income'
+        )
+    );
+
+
+    incomeRows.addEventListener(
+      'keydown',
+      event =>
+        handleMoneyTableKeydown(
+          event,
+          'income'
+        )
+    );
+
+
+    /* =========================================================
+       FORMAT MONEY ON BLUR
+    ========================================================= */
+
+    [
+      expenseRows,
+      incomeRows
+    ].forEach(
+      container => {
+
+        container.addEventListener(
+          'blur',
+          event => {
+
+            if (
+              event.target.classList.contains(
+                'expense-amount'
+              ) ||
+              event.target.classList.contains(
+                'income-amount'
+              )
+            ) {
+
+              event.target.value =
+                event.target.value
+                  ? formatMoney(
+                      event.target.value
+                    )
+                  : '';
+            }
+
+          },
+          true
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       CURRENCY SWITCH
+    ========================================================= */
+
+    document
+      .querySelectorAll(
+        '[data-currency]'
+      )
+      .forEach(
+        btn => {
+
+          btn.addEventListener(
+            'click',
+            () => {
+
+              state.currency =
+                btn.dataset.currency;
+
+
+              renderCurrencyButtons();
+
+              renderExpenses();
+
+              renderNotes();
+
+              saveAllData();
+            }
+          );
+
         }
-      }, true);
-      list.addEventListener('click', event => {
-        const button = event.target.closest('[data-delete-note]');
-        if (!button) return;
-        deleteNote(button.dataset.deleteNote, Number(button.dataset.noteIndex));
-      });
-    });
+      );
+
+
+    /* =========================================================
+       ADD NOTE BUTTONS
+    ========================================================= */
+
+    document
+      .querySelectorAll(
+        '[data-add-note]'
+      )
+      .forEach(
+        btn => {
+
+          btn.addEventListener(
+            'click',
+            () =>
+              addNote(
+                btn.dataset.addNote
+              )
+          );
+
+        }
+      );
+
+
+    /* =========================================================
+       NOTE EVENTS
+    ========================================================= */
+
+    document
+      .querySelectorAll(
+        '.note-list'
+      )
+      .forEach(
+        list => {
+
+          /*
+            Input:
+            nội dung + số tiền
+          */
+
+          list.addEventListener(
+            'input',
+            handleNoteInput
+          );
+
+
+          /*
+            Change:
+            checkbox + payment method
+          */
+
+          list.addEventListener(
+            'change',
+            handleNoteChange
+          );
+
+
+          /*
+            Format amount
+            khi rời khỏi ô.
+          */
+
+          list.addEventListener(
+            'blur',
+            event => {
+
+              if (
+                event.target.classList.contains(
+                  'note-amount'
+                )
+              ) {
+
+                event.target.value =
+                  event.target.value
+                    ? formatMoney(
+                        event.target.value
+                      )
+                    : '';
+              }
+
+            },
+            true
+          );
+
+
+          /*
+            Delete note
+          */
+
+          list.addEventListener(
+            'click',
+            event => {
+
+              const button =
+                event.target.closest(
+                  '[data-delete-note]'
+                );
+
+
+              if (!button) {
+                return;
+              }
+
+
+              deleteNote(
+                button.dataset.deleteNote,
+                Number(
+                  button.dataset.noteIndex
+                )
+              );
+            }
+          );
+        }
+      );
+
+
+    /* =========================================================
+       INITIALIZE
+    ========================================================= */
 
     loadSettings();
+
     getCurrentDay();
+
     getCurrentMonth();
+
     updateHeader();
+
     renderCurrencyButtons();
+
     renderExpenses();
+
     renderNotes();
+
   </script>
 </body>
 </html>
