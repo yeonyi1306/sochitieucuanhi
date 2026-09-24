@@ -7,20 +7,24 @@
   <title>Sổ chi tiêu theo ngày</title>
   <style>
     :root {
-      --bg: #f7f3fc;
-      --surface: #ffffff;
-      --surface-soft: #f3eefb;
-      --panel-edge: rgba(255,255,255,0.68);
-      --text: #292333;
-      --muted: #6f687c;
-      --line: #e3dced;
-      --accent: #7756b5;
-      --accent-soft: #eee6fa;
-      --danger: #e35d6a;
-      --shadow: 0 16px 40px rgba(92, 65, 125, 0.10);
-      --radius-xl: 22px;
-      --radius-lg: 16px;
-      --radius-md: 12px;
+      --bg: #dcd2ff;
+      --bg-deep: #c9bbf5;
+      --surface: rgba(255, 255, 255, 0.34);
+      --surface-soft: rgba(255, 255, 255, 0.24);
+      --surface-strong: rgba(255, 255, 255, 0.50);
+      --text: #30264a;
+      --muted: #716783;
+      --line: rgba(255, 255, 255, 0.48);
+      --accent: #8a70e8;
+      --accent-dark: #7056d1;
+      --accent-soft: rgba(224, 216, 255, 0.66);
+      --danger: #d85f79;
+      --success: #4f9b78;
+      --glass-blur: 18px;
+      --shadow: 0 18px 45px rgba(80, 61, 139, 0.14);
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
     }
 
     * { box-sizing: border-box; }
@@ -28,12 +32,13 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background-image:
-        radial-gradient(circle at 12% 8%, rgba(183, 146, 224, 0.16), transparent 28%),
-        radial-gradient(circle at 88% 18%, rgba(151, 121, 205, 0.12), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(211, 184, 235, 0.14), transparent 34%);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(255,255,255,.58) 0 10%, transparent 28%),
+        radial-gradient(circle at 92% 20%, rgba(184,158,255,.35) 0 12%, transparent 32%),
+        radial-gradient(circle at 48% 100%, rgba(255,255,255,.28) 0 14%, transparent 35%),
+        linear-gradient(135deg, #dcd2ff 0%, #cfc2f8 48%, #e3dcff 100%);
+      background-attachment: fixed;
       color: var(--text);
     }
 
@@ -58,17 +63,11 @@
       justify-content: center;
       padding: 12px 24px;
       border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(
-        145deg,
-        rgba(255,255,255,0.28),
-        rgba(242,234,252,0.12)
-      );
-      box-shadow:
-        0 16px 38px rgba(76,49,111,0.10),
-        inset 0 1px 0 rgba(255,255,255,0.82);
-      backdrop-filter: blur(22px) saturate(130%);
-      -webkit-backdrop-filter: blur(22px) saturate(130%);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.34);
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: 0 14px 32px rgba(80, 61, 139, .10), inset 0 1px 0 rgba(255,255,255,.58);
       text-align: center;
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -83,45 +82,17 @@
     }
 
     .panel {
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.22),
-        rgba(246, 239, 252, 0.10)
-      );
-      border: 1px solid rgba(255, 255, 255, 0.52);
+      background: var(--surface);
+      border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      box-shadow:
-        0 22px 55px rgba(76, 49, 111, 0.12),
-        inset 0 1px 0 rgba(255,255,255,0.78),
-        inset 0 -1px 0 rgba(255,255,255,0.18);
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.58);
       overflow: hidden;
-      position: relative;
-      backdrop-filter: blur(24px) saturate(135%);
-      -webkit-backdrop-filter: blur(24px) saturate(135%);
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: inherit;
-      background:
-        linear-gradient(
-          125deg,
-          rgba(255,255,255,0.16),
-          transparent 32%,
-          transparent 68%,
-          rgba(255,255,255,0.06)
-        );
-      opacity: 0.9;
     }
 
     .panel-head {
-      position: relative;
-      z-index: 1;
       padding: 20px 20px 16px;
-      background: rgba(255,255,255,0.06);
       display: flex;
       gap: 14px;
       align-items: flex-end;
@@ -202,31 +173,28 @@
     }
 
     .table-card {
-      position: relative;
-      z-index: 1;
       padding: 14px 18px 18px;
-      background: rgba(255,255,255,0.045);
     }
 
     .expense-table {
-      border: 1px solid rgba(255,255,255,0.82);
-      border-radius: 16px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
       overflow: hidden;
-      background: rgba(255,255,255,0.58);
-      box-shadow:
-        0 8px 22px rgba(92,65,125,0.05),
-        inset 0 1px 0 rgba(255,255,255,0.9);
+      background: rgba(255,255,255,.20);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
     }
 
     .table-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.62fr);
+      grid-template-columns: minmax(0, 1fr) minmax(150px, .30fr) minmax(180px, .42fr);
       align-items: center;
     }
 
     .table-head {
       min-height: 48px;
-      background: #fbfbfd;
+      background: rgba(255,255,255,.18);
       color: var(--muted);
       font-size: 12px;
       font-weight: 800;
@@ -236,7 +204,8 @@
     }
 
     .table-head > div,
-    .expense-row > div {
+    .expense-row > div,
+    .table-footer > div {
       padding: 0 14px;
     }
 
@@ -249,8 +218,8 @@
 
     .expense-row {
       min-height: 56px;
-      border-bottom: 1px solid rgba(227,220,237,0.88);
-      background: rgba(255,255,255,0.68);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
     }
 
     .expense-row:last-child { border-bottom: 0; }
@@ -264,7 +233,7 @@
       width: 100%;
       border: 1px solid transparent;
       outline: 0;
-      background: rgba(255,255,255,0.42);
+      background: transparent;
       color: var(--text);
       padding: 9px 10px;
       border-radius: 10px;
@@ -280,22 +249,25 @@
       box-shadow: 0 0 0 3px rgba(92,86,216,.08);
     }
 
-    .payment-method {
-      flex: 0 0 92px;
-      height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      background: var(--surface-soft);
-      color: var(--text);
-      padding: 0 7px;
-      font-size: 11px;
-      font-weight: 800;
+    .source-select {
+      width: 100%;
+      border: 1px solid transparent;
       outline: 0;
+      background: rgba(255,255,255,.26);
+      color: var(--text);
+      padding: 9px 10px;
+      border-radius: 14px;
+      font-weight: 750;
+      cursor: pointer;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
     }
 
-    .payment-method:focus {
-      border-color: #c9b5df;
-      box-shadow: 0 0 0 3px rgba(119,86,181,.10);
+    .source-select:focus {
+      border-color: rgba(138,112,232,.55);
+      background: rgba(236,230,255,.55);
+      box-shadow: 0 0 0 3px rgba(138,112,232,.10);
     }
 
     .money-cell {
@@ -329,9 +301,9 @@
     .table-footer {
       min-height: 60px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.62fr);
+      grid-template-columns: minmax(0, 1fr) minmax(180px, .42fr);
       border-top: 1px solid var(--line);
-      background: #fafaff;
+      background: rgba(239,235,255,.30);
       position: sticky;
       bottom: 0;
       z-index: 2;
@@ -343,6 +315,7 @@
       padding: 0 14px;
     }
 
+    .table-footer .total-label { grid-column: 1 / 3; }
     .total-label {
       font-weight: 900;
     }
@@ -380,7 +353,7 @@
 
     .ghost-btn,
     .icon-btn {
-      background: white;
+      background: rgba(255,255,255,.30);
       color: var(--text);
       padding: 0 12px;
     }
@@ -402,73 +375,147 @@
     }
 
     .balance-summary {
-      position: relative;
-      z-index: 1;
       margin: 18px;
-      padding: 14px;
-      border: 1px solid rgba(255,255,255,0.48);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.14);
-      box-shadow:
-        0 10px 26px rgba(92,65,125,0.07),
-        inset 0 1px 0 rgba(255,255,255,0.78);
-      backdrop-filter: blur(18px) saturate(125%);
-      -webkit-backdrop-filter: blur(18px) saturate(125%);
-      display: grid;
-      gap: 9px;
-    }
-
-    .balance-line {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 10px 12px;
-      border-radius: 11px;
-      background: var(--surface-soft);
+      padding: 20px 18px;
       border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface-soft);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      text-align: center;
     }
 
-    .balance-line .label {
+
+
+    .balance-edit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .balance-edit-grid label {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 800;
     }
 
-    .balance-line .value {
-      font-size: 18px;
-      font-weight: 950;
+    .balance-start-input {
+      width: 100%;
+      margin-top: 6px;
+      border: 1px solid rgba(255,255,255,.48);
+      background: rgba(255,255,255,.24);
+      color: var(--text);
+      outline: none;
+      border-radius: 14px;
+      padding: 10px 11px;
+      font-weight: 800;
       font-variant-numeric: tabular-nums;
-      text-align: right;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
 
-    .balance-line.total {
-      background: var(--accent-soft);
-      border-color: #d9c9eb;
+    .balance-start-input:focus {
+      border-color: rgba(138,112,232,.58);
+      box-shadow: 0 0 0 3px rgba(138,112,232,.10);
     }
 
-    .balance-line.total .label,
-    .balance-line.total .value {
-      color: var(--accent);
+    @media (max-width: 700px) {
+      .balance-edit-grid { grid-template-columns: 1fr; }
+    }
+
+    .balance-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      text-align: left;
+    }
+
+    .balance-item {
+      padding: 15px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.42);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.40);
+    }
+
+    .balance-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .balance-item strong {
+      display: block;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-variant-numeric: tabular-nums;
+      word-break: break-word;
+    }
+
+    .balance-total {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(255,255,255,.42), rgba(219,208,255,.34));
+      text-align: center;
+    }
+
+    .balance-total strong {
+      color: var(--accent-dark);
+      font-size: clamp(28px, 4vw, 38px);
+    }
+
+    @media (max-width: 700px) {
+  
+    .balance-edit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .balance-edit-grid label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .balance-start-input {
+      width: 100%;
+      margin-top: 6px;
+      border: 1px solid rgba(255,255,255,.48);
+      background: rgba(255,255,255,.24);
+      color: var(--text);
+      outline: none;
+      border-radius: 14px;
+      padding: 10px 11px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .balance-start-input:focus {
+      border-color: rgba(138,112,232,.58);
+      box-shadow: 0 0 0 3px rgba(138,112,232,.10);
+    }
+
+    @media (max-width: 700px) {
+      .balance-edit-grid { grid-template-columns: 1fr; }
+    }
+
+    .balance-grid { grid-template-columns: 1fr; }
+      .balance-total { grid-column: auto; }
     }
 
     .monthly-summary {
-      position: relative;
-      z-index: 1;
       margin: 18px;
       padding: 20px 18px;
-      border: 1px solid rgba(255,255,255,0.48);
-      border-radius: 18px;
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.56) 0%,
-        rgba(238,228,249,0.42) 100%
-      );
-      box-shadow:
-        0 10px 26px rgba(92,65,125,0.07),
-        inset 0 1px 0 rgba(255,255,255,0.78);
-      backdrop-filter: blur(18px) saturate(125%);
-      -webkit-backdrop-filter: blur(18px) saturate(125%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.34), rgba(224,216,255,.26));
       text-align: center;
     }
 
@@ -506,35 +553,33 @@
     }
 
     .income-table .table-head {
-      background: #f8fcf9;
+      background: rgba(224,250,237,.20);
+    }
+
+    .income-table .source-select {
+      background: rgba(255,255,255,.24);
     }
 
     .income-table .table-footer {
-      background: #f8fcf9;
+      background: rgba(224,250,237,.20);
     }
 
     .net-positive { color: #198754; }
     .net-negative { color: var(--danger); }
 
     .notes-wrap {
-      position: relative;
-      z-index: 1;
       padding: 18px;
       display: grid;
-      background: rgba(255,255,255,0.045);
       gap: 16px;
     }
 
     .note-column {
-      border: 1px solid rgba(255,255,255,0.48);
-      border-radius: 18px;
-      background: rgba(246,241,252,0.14);
-      box-shadow:
-        0 10px 26px rgba(92,65,125,0.07),
-        inset 0 1px 0 rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface-soft);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
       overflow: hidden;
-      backdrop-filter: blur(18px) saturate(125%);
-      -webkit-backdrop-filter: blur(18px) saturate(125%);
     }
 
     .note-column-head {
@@ -561,13 +606,14 @@
 
     .note-item {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr) minmax(205px, .8fr) auto;
+      grid-template-columns: auto minmax(0, 1fr) 120px auto;
       gap: 8px;
       align-items: center;
       padding: 9px;
-      border-radius: 12px;
-      background: white;
+      border-radius: 18px;
+      background: rgba(255,255,255,.28);
       border: 1px solid var(--line);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.40);
     }
 
     .note-checkbox {
@@ -597,7 +643,7 @@
     .tiny-btn {
       min-height: 36px;
       border: 1px solid var(--line);
-      background: white;
+      background: rgba(255,255,255,.30);
       border-radius: 10px;
       padding: 0 11px;
       font-weight: 800;
@@ -625,8 +671,7 @@
       .date-input-wrap { flex: 1 1 180px; }
       .date-input { min-width: 0; width: 100%; }
       .table-row,
-      .table-footer { grid-template-columns: minmax(0, 1fr) minmax(250px, .62fr); }
-      .payment-method { flex-basis: 88px; }
+      .table-footer { grid-template-columns: minmax(0, 1fr) minmax(105px, .28fr) minmax(145px, .5fr); }
       .summary-panels { grid-template-columns: 1fr; }
       .expense-scroll { height: 380px; }
       .note-item { grid-template-columns: auto minmax(0, 1fr) auto; }
@@ -675,6 +720,7 @@
           <div class="expense-table">
             <div class="table-row table-head">
               <div>Nội dung chi tiêu</div>
+              <div>Nguồn tiền</div>
               <div>Giá</div>
             </div>
 
@@ -695,6 +741,7 @@
             <div class="expense-table income-table">
               <div class="table-row table-head">
                 <div>Nội dung tiền vào</div>
+                <div class="income-source-head">Nguồn tiền</div>
                 <div>Số tiền</div>
               </div>
               <div class="expense-scroll" id="incomeRows" aria-live="polite"></div>
@@ -767,18 +814,29 @@
             </div>
           </div>
           <div class="balance-summary">
-            <div class="balance-line">
-              <span class="label">Số dư Tiền mặt</span>
-              <span class="value" id="cashBalanceValue">₩0</span>
+            <div class="balance-grid">
+              <div class="balance-item">
+                <span>Tiền mặt</span>
+                <strong id="cashBalanceValue">₩0</strong>
+              </div>
+              <div class="balance-item">
+                <span>Tài khoản</span>
+                <strong id="bankBalanceValue">₩0</strong>
+              </div>
+              <div class="balance-item balance-total">
+                <span>Tổng số dư</span>
+                <strong id="balanceValue">₩0</strong>
+              </div>
             </div>
-            <div class="balance-line">
-              <span class="label">Số dư Tài khoản</span>
-              <span class="value" id="bankBalanceValue">₩0</span>
+            <div class="balance-edit-grid">
+              <label>Vốn tiền mặt
+                <input id="cashStartInput" class="balance-start-input" inputmode="numeric" placeholder="0" />
+              </label>
+              <label>Vốn tài khoản
+                <input id="bankStartInput" class="balance-start-input" inputmode="numeric" placeholder="0" />
+              </label>
             </div>
-            <div class="balance-line total">
-              <span class="label">Tổng số dư</span>
-              <span class="value" id="balanceValue">₩0</span>
-            </div>
+            <div class="monthly-caption">Nhập số dư ban đầu. Chi tiêu sẽ trừ đúng nguồn tiền đã chọn; tiền vào sẽ cộng vào nguồn tương ứng.</div>
           </div>
         </aside>
       </div>
@@ -794,7 +852,8 @@
       selectedDate: getTodayKey(),
       currency: 'KRW',
       data: loadAllData(),
-      monthlyIncomes: loadMonthlyIncomes()
+      monthlyIncomes: loadMonthlyIncomes(),
+      balances: loadBalances()
     };
 
     const $ = (selector) => document.querySelector(selector);
@@ -806,9 +865,11 @@
     const totalValue = $('#totalValue');
     const monthlyValue = $('#monthlyValue');
     const monthlyMonth = $('#monthlyMonth');
+    const balanceValue = $('#balanceValue');
     const cashBalanceValue = $('#cashBalanceValue');
     const bankBalanceValue = $('#bankBalanceValue');
-    const balanceValue = $('#balanceValue');
+    const cashStartInput = $('#cashStartInput');
+    const bankStartInput = $('#bankStartInput');
     const saveStatus = $('#saveStatus');
     const receivableList = $('#receivableList');
     const payableList = $('#payableList');
@@ -835,7 +896,7 @@
           id: `exp_${date}_${index + 1}`,
           item: '',
           amount: 0,
-          paymentMethod: 'cash'
+          source: 'cash'
         })),
         incomes: [],
         total: 0,
@@ -852,12 +913,12 @@
         id: String(item?.id || `exp_${date}_${index + 1}`),
         item: String(item?.item || ''),
         amount: toNumber(item?.amount),
-        paymentMethod: item?.paymentMethod === 'bank' ? 'bank' : 'cash'
+        source: item?.source === 'bank' ? 'bank' : 'cash'
       }));
 
       while (base.expenses.length < INITIAL_EXPENSE_ROWS) {
         const i = base.expenses.length + 1;
-        base.expenses.push({ id: `exp_${date}_${i}`, item: '', amount: 0, paymentMethod: 'cash' });
+        base.expenses.push({ id: `exp_${date}_${i}`, item: '', amount: 0, source: 'cash' });
       }
 
       // Tiền vào hiện được quản lý theo tháng, không còn theo từng ngày.
@@ -877,8 +938,7 @@
         id: String(note?.id || `${prefix}_${date}_${index + 1}`),
         content: String(note?.content || ''),
         amount: toNumber(note?.amount),
-        isDone: Boolean(note?.isDone),
-        paymentMethod: note?.paymentMethod === 'bank' ? 'bank' : 'cash'
+        isDone: Boolean(note?.isDone)
       }));
     }
 
@@ -901,8 +961,7 @@
         incomes: Array.from({ length: INITIAL_EXPENSE_ROWS }, (_, index) => ({
           id: `inc_${month}_${index + 1}`,
           item: '',
-          amount: 0,
-          paymentMethod: 'cash'
+          amount: 0
         }))
       };
     }
@@ -914,12 +973,11 @@
       base.incomes = incomes.map((item, index) => ({
         id: String(item?.id || `inc_${month}_${index + 1}`),
         item: String(item?.item || ''),
-        amount: toNumber(item?.amount),
-        paymentMethod: item?.paymentMethod === 'bank' ? 'bank' : 'cash'
+        amount: toNumber(item?.amount)
       }));
       while (base.incomes.length < INITIAL_EXPENSE_ROWS) {
         const i = base.incomes.length + 1;
-        base.incomes.push({ id: `inc_${month}_${i}`, item: '', amount: 0, paymentMethod: 'cash' });
+        base.incomes.push({ id: `inc_${month}_${i}`, item: '', amount: 0 });
       }
       return base;
     }
@@ -941,12 +999,11 @@
           const month = date.slice(0, 7);
           if (!migrated[month]) migrated[month] = createEmptyMonth(month);
           meaningful.forEach((row, index) => {
-            if (!migrated[month].incomes[index]) migrated[month].incomes[index] = { id: `inc_${month}_${Date.now()}_${index}`, item: '', amount: 0, paymentMethod: 'cash' };
+            if (!migrated[month].incomes[index]) migrated[month].incomes[index] = { id: `inc_${month}_${Date.now()}_${index}`, item: '', amount: 0, source: 'cash' };
             const target = migrated[month].incomes[index];
             if (!target.item && !target.amount) {
               target.item = String(row?.item || '');
               target.amount = toNumber(row?.amount);
-              target.paymentMethod = row?.paymentMethod === 'bank' ? 'bank' : 'cash';
             }
           });
         });
@@ -968,10 +1025,23 @@
       } catch {}
     }
 
+    function loadBalances() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(SETTINGS_KEY + '-balances') || '{}');
+        return {
+          cash: toNumber(raw.cash),
+          bank: toNumber(raw.bank)
+        };
+      } catch {
+        return { cash: 0, bank: 0 };
+      }
+    }
+
     function saveAllData() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state.data));
       localStorage.setItem(STORAGE_KEY + '-monthly-incomes', JSON.stringify(state.monthlyIncomes));
       localStorage.setItem(SETTINGS_KEY, JSON.stringify({ currency: state.currency }));
+      localStorage.setItem(SETTINGS_KEY + '-balances', JSON.stringify(state.balances));
       flashSaved();
     }
 
@@ -1022,21 +1092,18 @@
       const isIncome = kind === 'income';
       const prefix = isIncome ? 'Khoản tiền vào' : 'Nội dung chi tiêu';
       const inputClass = isIncome ? 'income' : 'expense';
-      const paymentMethod = row.paymentMethod === 'bank' ? 'bank' : 'cash';
-
       wrapper.innerHTML = `
         <div>
           <input class="text-input ${inputClass}-item" type="text" placeholder="Nhập nội dung..." value="${escapeHtml(row.item)}" data-index="${index}" aria-label="${prefix} ${index + 1}" />
         </div>
         <div>
-          <div class="money-cell">
-            <input class="money-input ${inputClass}-amount" type="text" inputmode="numeric" autocomplete="off" placeholder="0" value="${row.amount ? formatMoney(row.amount) : ''}" data-index="${index}" aria-label="Số tiền ${index + 1}" />
-            <select class="payment-method ${inputClass}-payment-method" data-index="${index}" aria-label="Hình thức thanh toán">
-              <option value="cash" ${paymentMethod === 'cash' ? 'selected' : ''}>Tiền mặt</option>
-              <option value="bank" ${paymentMethod === 'bank' ? 'selected' : ''}>Tài khoản</option>
-            </select>
-            <span class="currency-unit">${state.currency}</span>
-          </div>
+          <select class="source-select ${isIncome ? 'income-source' : 'expense-source'}" data-index="${index}" aria-label="Nguồn tiền ${index + 1}">
+            <option value="cash" ${(row.source || 'cash') === 'cash' ? 'selected' : ''}>💵 Tiền mặt</option>
+            <option value="bank" ${row.source === 'bank' ? 'selected' : ''}>🏦 Tài khoản</option>
+          </select>
+        </div>
+        <div>
+          <div class="money-cell"><input class="money-input ${inputClass}-amount" type="text" inputmode="numeric" autocomplete="off" placeholder="0" value="${row.amount ? formatMoney(row.amount) : ''}" data-index="${index}" aria-label="Số tiền ${index + 1}" /><span class="currency-unit">${state.currency}</span></div>
         </div>
       `;
       return wrapper;
@@ -1065,7 +1132,7 @@
       const incomeTotalValue = $('#incomeTotalValue');
       incomeTotalValue.textContent = moneyLabel(incomes);
 
-      updateBalance(incomes);
+      updateBalance();
     }
 
     function updateMonthlySummary() {
@@ -1085,72 +1152,47 @@
       updateBalance();
     }
 
-    function updateBalance() {
-      if (!balanceValue) return;
-
-      const month = getMonthKey();
-      const monthData = getCurrentMonth();
-
-      let cashIncome = 0;
-      let bankIncome = 0;
-
-      monthData.incomes.forEach(row => {
-        const amount = toNumber(row.amount);
-        if ((row.paymentMethod || 'cash') === 'bank') {
-          bankIncome += amount;
-        } else {
-          cashIncome += amount;
-        }
-      });
-
-      let cashExpense = 0;
-      let bankExpense = 0;
-      let cashReceivable = 0;
-      let bankReceivable = 0;
+    function calculateAccountBalances() {
+      const totals = { cash: toNumber(state.balances.cash), bank: toNumber(state.balances.bank) };
 
       Object.entries(state.data).forEach(([date, raw]) => {
-        if (!date.startsWith(month)) return;
-
         const day = normalizeDay(date, raw);
-
         day.expenses.forEach(row => {
           const amount = toNumber(row.amount);
-          if ((row.paymentMethod || 'cash') === 'bank') {
-            bankExpense += amount;
-          } else {
-            cashExpense += amount;
-          }
-        });
-
-        day.notes.receivable.forEach(note => {
-          const amount = toNumber(note.amount);
-          const method = note.paymentMethod || 'cash';
-
-          // Chưa hoàn thành: đã ứng tiền hộ -> trừ khỏi ví.
-          // Đã hoàn thành: đã được trả lại -> cộng trở lại.
-          if (method === 'bank') {
-            bankReceivable += note.isDone ? amount : -amount;
-          } else {
-            cashReceivable += note.isDone ? amount : -amount;
-          }
+          totals[row.source === 'bank' ? 'bank' : 'cash'] -= amount;
         });
       });
 
-      const cashBalance = cashIncome - cashExpense + cashReceivable;
-      const bankBalance = bankIncome - bankExpense + bankReceivable;
-      const totalBalance = cashBalance + bankBalance;
-
-      const renderSigned = value =>
-        `${value < 0 ? '-' : ''}${formatMoney(Math.abs(value))} ${state.currency}`;
-
-      cashBalanceValue.textContent = renderSigned(cashBalance);
-      bankBalanceValue.textContent = renderSigned(bankBalance);
-      balanceValue.textContent = renderSigned(totalBalance);
-
-      [cashBalanceValue, bankBalanceValue, balanceValue].forEach(el => {
-        el.classList.toggle('net-positive', el.textContent.charAt(0) !== '-' && toNumber(el.textContent) > 0);
-        el.classList.toggle('net-negative', el.textContent.charAt(0) === '-');
+      Object.values(state.monthlyIncomes).forEach(month => {
+        normalizeMonth(month?.month || '', month).incomes.forEach(row => {
+          const amount = toNumber(row.amount);
+          totals[row.source === 'bank' ? 'bank' : 'cash'] += amount;
+        });
       });
+
+      return totals;
+    }
+
+    function syncBalanceInputs() {
+      if (cashStartInput) cashStartInput.value = state.balances.cash ? formatMoney(state.balances.cash) : '';
+      if (bankStartInput) bankStartInput.value = state.balances.bank ? formatMoney(state.balances.bank) : '';
+    }
+
+    function updateBalance() {
+      if (!balanceValue) return;
+      const totals = calculateAccountBalances();
+      const total = totals.cash + totals.bank;
+
+      cashBalanceValue.textContent = moneyLabel(totals.cash);
+      bankBalanceValue.textContent = moneyLabel(totals.bank);
+      balanceValue.textContent = moneyLabel(total);
+
+      cashBalanceValue.classList.toggle('net-positive', totals.cash >= 0);
+      cashBalanceValue.classList.toggle('net-negative', totals.cash < 0);
+      bankBalanceValue.classList.toggle('net-positive', totals.bank >= 0);
+      bankBalanceValue.classList.toggle('net-negative', totals.bank < 0);
+      balanceValue.classList.toggle('net-positive', total >= 0);
+      balanceValue.classList.toggle('net-negative', total < 0);
     }
 
     function updateHeader() {
@@ -1168,22 +1210,10 @@
       const item = document.createElement('div');
       item.className = 'note-item';
       item.dataset.id = note.id;
-      const paymentMethod = note.paymentMethod === 'bank' ? 'bank' : 'cash';
-      const paymentControl = type === 'receivable' ? `
-        <select class="payment-method note-payment-method" data-note-type="${type}" data-note-index="${index}" aria-label="Hình thức thanh toán">
-          <option value="cash" ${paymentMethod === 'cash' ? 'selected' : ''}>Tiền mặt</option>
-          <option value="bank" ${paymentMethod === 'bank' ? 'selected' : ''}>Tài khoản</option>
-        </select>
-      ` : '';
-
       item.innerHTML = `
         <input class="note-checkbox" type="checkbox" ${note.isDone ? 'checked' : ''} data-note-type="${type}" data-note-index="${index}" aria-label="Đánh dấu đã thanh toán" />
         <input class="note-text ${note.isDone ? 'done' : ''}" type="text" value="${escapeHtml(note.content)}" placeholder="Nội dung khoản tiền..." data-note-type="${type}" data-note-index="${index}" aria-label="Nội dung" />
-        <div class="money-cell note-money-cell">
-          <input class="note-amount" type="text" inputmode="numeric" value="${note.amount ? formatMoney(note.amount) : ''}" placeholder="0" data-note-type="${type}" data-note-index="${index}" aria-label="Số tiền" />
-          ${paymentControl}
-          <span class="currency-unit">${state.currency}</span>
-        </div>
+        <div class="money-cell note-money-cell"><input class="note-amount" type="text" inputmode="numeric" value="${note.amount ? formatMoney(note.amount) : ''}" placeholder="0" data-note-type="${type}" data-note-index="${index}" aria-label="Số tiền" /><span class="currency-unit">${state.currency}</span></div>
         <button type="button" class="icon-btn delete-note" title="Xoá khoản" data-delete-note="${type}" data-note-index="${index}" aria-label="Xoá khoản">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6m4 4v6m6-6v6"/></svg>
         </button>
@@ -1212,7 +1242,7 @@
     function addExpenseRow() {
       const day = getCurrentDay();
       const nextIndex = day.expenses.length + 1;
-      day.expenses.push({ id: `exp_${Date.now()}`, item: '', amount: 0, paymentMethod: 'cash' });
+      day.expenses.push({ id: `exp_${Date.now()}`, item: '', amount: 0, source: 'cash' });
       renderExpenses();
       saveAllData();
       requestAnimationFrame(() => {
@@ -1225,7 +1255,7 @@
 
     function addIncomeRow() {
       const month = getCurrentMonth();
-      month.incomes.push({ id: `inc_${Date.now()}`, item: '', amount: 0, paymentMethod: 'cash' });
+      month.incomes.push({ id: `inc_${Date.now()}`, item: '', amount: 0, source: 'cash' });
       renderExpenses();
       saveAllData();
       requestAnimationFrame(() => {
@@ -1242,8 +1272,7 @@
         id: `${type === 'receivable' ? 'rec' : 'pay'}_${Date.now()}`,
         content: '',
         amount: 0,
-        isDone: false,
-        paymentMethod: 'cash'
+        isDone: false
       });
       renderNotes();
       saveAllData();
@@ -1276,13 +1305,14 @@
         const numeric = toNumber(input.value);
         rows[index].amount = numeric;
         input.value = numeric ? formatMoney(numeric) : '';
-      } else if (input.classList.contains(`${prefix}-payment-method`)) {
-        rows[index].paymentMethod = input.value === 'bank' ? 'bank' : 'cash';
+        updateTotal();
+        updateMonthlySummary();
+      } else if (input.classList.contains(`${prefix}-source`)) {
+        rows[index].source = input.value === 'bank' ? 'bank' : 'cash';
+        updateBalance();
       }
-
       updateTotal();
       updateMonthlySummary();
-      updateBalance();
       saveAllData();
     }
 
@@ -1320,32 +1350,19 @@
         note.amount = toNumber(el.value);
         el.value = note.amount ? formatMoney(note.amount) : '';
       }
-
-      updateBalance();
       saveAllData();
     }
 
     function handleNoteChange(event) {
       const el = event.target;
+      if (!el.classList.contains('note-checkbox')) return;
       const type = el.dataset.noteType;
       const index = Number(el.dataset.noteIndex);
-
-      if (!type || !Number.isInteger(index)) return;
-
       const day = getCurrentDay();
       const note = day.notes[type]?.[index];
       if (!note) return;
-
-      if (el.classList.contains('note-checkbox')) {
-        note.isDone = el.checked;
-        renderNotes();
-      } else if (el.classList.contains('note-payment-method')) {
-        note.paymentMethod = el.value === 'bank' ? 'bank' : 'cash';
-      } else {
-        return;
-      }
-
-      updateBalance();
+      note.isDone = el.checked;
+      renderNotes();
       saveAllData();
     }
 
@@ -1373,7 +1390,6 @@
     expenseRows.addEventListener('input', event => handleMoneyTableInput(event, 'expense'));
     expenseRows.addEventListener('change', event => handleMoneyTableInput(event, 'expense'));
     expenseRows.addEventListener('keydown', event => handleMoneyTableKeydown(event, 'expense'));
-
     incomeRows.addEventListener('input', event => handleMoneyTableInput(event, 'income'));
     incomeRows.addEventListener('change', event => handleMoneyTableInput(event, 'income'));
     incomeRows.addEventListener('keydown', event => handleMoneyTableKeydown(event, 'income'));
@@ -1412,7 +1428,22 @@
       });
     });
 
+    cashStartInput?.addEventListener('input', () => {
+      state.balances.cash = toNumber(cashStartInput.value);
+      cashStartInput.value = state.balances.cash ? formatMoney(state.balances.cash) : '';
+      updateBalance();
+      saveAllData();
+    });
+
+    bankStartInput?.addEventListener('input', () => {
+      state.balances.bank = toNumber(bankStartInput.value);
+      bankStartInput.value = state.balances.bank ? formatMoney(state.balances.bank) : '';
+      updateBalance();
+      saveAllData();
+    });
+
     loadSettings();
+    syncBalanceInputs();
     getCurrentDay();
     getCurrentMonth();
     updateHeader();
