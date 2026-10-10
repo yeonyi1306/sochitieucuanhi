@@ -195,6 +195,12 @@ input::placeholder{color:#9d91a5}
         <div class="table-footer"><div class="total-label">Tổng tiền vào</div><div></div><div class="total-value" id="incomeTotal">₩0</div></div>
       </div>
       <div class="table-actions"><button class="btn" id="addIncomeBtn">＋ Thêm dòng tiền vào</button></div>
+      <div class="custom-box" style="margin-top:4px">
+        <h3>🛡️ Sao lưu dữ liệu</h3>
+        <p style="font-size:11px;color:var(--muted);line-height:1.6;margin:0 0 10px">Xuất bản sao lưu JSON của dữ liệu đang lưu trên ứng dụng này. Hãy giữ file ở nơi an toàn và không chia sẻ công khai.</p>
+        <button class="btn primary" id="exportJsonBtn" type="button">⬇ Xuất dữ liệu JSON</button>
+        <div class="status" id="exportStatus" style="text-align:left;padding:10px 0 0">Bản sao lưu được tạo trên thiết bị này.</div>
+      </div>
       <div class="status" id="saveStatus">Dữ liệu tự động lưu trên thiết bị</div>
     </article>
   </section>
@@ -552,6 +558,7 @@ document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>
 $('#datePicker').addEventListener('change',()=>{state.selectedDate=$('#datePicker').value||todayKey();currentDay();renderHome();renderNotes();save()});
 $('#statsDate').addEventListener('change',renderStats);
 $('#addExpenseBtn').addEventListener('click',addExpense);$('#addIncomeBtn').addEventListener('click',addIncome);
+$('#exportJsonBtn').addEventListener('click',exportLocalData);
 
 $('#expenseRows').addEventListener('input',e=>handleTableInput(e,'expense'));
 $('#expenseRows').addEventListener('change',e=>handleTableInput(e,'expense'));
@@ -600,6 +607,36 @@ $('#categoryChips').addEventListener('click',e=>{
   const b=e.target.closest('[data-delete-category]');if(!b)return;
   const cat=b.dataset.deleteCategory;state.categories=state.categories.filter(c=>c!==cat);renderHome();renderStats();save();showToast('Đã xóa phân loại');
 });
+
+function exportLocalData(){
+  // Export every localStorage entry for this web-app origin, including known app keys.
+  // This does not delete or modify any stored data.
+  const entries={};
+  for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i);
+    if(key===null)continue;
+    const raw=localStorage.getItem(key);
+    try{entries[key]=JSON.parse(raw)}catch{entries[key]=raw}
+  }
+  const backup={
+    format:'expense-tracker-localStorage-backup',
+    schemaVersion:1,
+    exportedAt:new Date().toISOString(),
+    origin:location.origin,
+    storageType:'localStorage',
+    entries
+  };
+  const json=JSON.stringify(backup,null,2);
+  const blob=new Blob([json],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const stamp=new Date().toISOString().replace(/[:.]/g,'-');
+  a.href=url;a.download=`so-chi-tieu-backup-${stamp}.json`;
+  a.style.display='none';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
+  $('#exportStatus').textContent='Đã tạo yêu cầu tải bản sao lưu. Hãy kiểm tra ứng dụng Tệp (Files) hoặc mục Downloads.';
+  showToast('Đã tạo bản sao lưu JSON');
+}
 
 function showToast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),1500)}
 
