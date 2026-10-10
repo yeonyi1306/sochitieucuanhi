@@ -126,6 +126,23 @@ input::placeholder{color:#9d91a5}
 .custom-box{margin:14px;padding:14px;border:1px solid rgba(255,255,255,.44);border-radius:20px;background:rgba(255,255,255,.14)}
 .custom-box h3{margin:0 0 8px;font-size:13px}.custom-add{display:flex;gap:7px}.custom-add input{flex:1;border:1px solid rgba(255,255,255,.50);background:rgba(255,255,255,.20);border-radius:13px;padding:9px 10px;outline:0;color:var(--text)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.20);border-radius:999px;padding:6px 9px;font-size:10px}.chip button{border:0;background:transparent;color:var(--muted);padding:0;font-weight:900}
+/* Weekly budget page */
+.weekly-controls{align-items:center}.weekly-controls .date-wrap{flex:1 1 145px;min-width:120px}.weekly-controls .btn{padding:0 10px;white-space:nowrap}
+.weekly-table-shell{margin:14px;border:1px solid rgba(255,255,255,.48);border-radius:22px;overflow:hidden;background:rgba(255,255,255,.14)}
+.weekly-table-head,.weekly-row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);align-items:center}
+.weekly-table-head{min-height:42px;background:rgba(255,255,255,.22);font-size:11px;font-weight:900;color:var(--muted)}
+.weekly-table-head>div,.weekly-row>div{padding:0 10px}.weekly-table-head>div:not(:first-child){text-align:right}
+.weekly-row{min-height:61px;border-top:1px solid rgba(255,255,255,.28);font-size:12px}.weekly-row .weekly-spent,.weekly-row .weekly-left{text-align:right;font-weight:850;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.weekly-row .weekly-name{font-weight:850}.weekly-row .weekly-name small{display:block;font-size:9px;font-weight:600;color:var(--muted);margin-top:3px}
+.weekly-left.negative{color:var(--danger)}.weekly-left.positive{color:var(--success)}
+.weekly-total{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 12px;background:rgba(255,255,255,.20);border-top:1px solid rgba(255,255,255,.35);font-size:11px;font-weight:850}.weekly-total strong{font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.weekly-budget-editor{margin:14px;padding:15px;border:1px solid rgba(255,255,255,.46);border-radius:22px;background:rgba(255,255,255,.17)}
+.weekly-editor-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.weekly-editor-head h3{margin:0;font-size:15px}.weekly-hint{font-size:10px;color:var(--muted)}
+.weekly-budget-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(85px,120px) 34px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.26)}.weekly-budget-row:last-child{border-bottom:0}
+.weekly-budget-name{font-size:12px;font-weight:800;overflow-wrap:anywhere}.weekly-budget-input{width:100%;min-width:0;text-align:right;border:1px solid rgba(255,255,255,.52);background:rgba(255,255,255,.28);border-radius:12px;padding:9px 7px;color:var(--text);font-weight:850;outline:0}.weekly-budget-input:focus{border-color:var(--accent)}
+.weekly-add-row{display:flex;gap:7px;margin-top:13px}.weekly-add-row input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.52);background:rgba(255,255,255,.25);border-radius:13px;padding:10px;color:var(--text);outline:0}.weekly-footnote{font-size:10px;line-height:1.55;color:var(--muted);margin:11px 1px 0}
+.weekly-insight{margin:0 14px 15px;padding:14px 15px;border:1px solid rgba(255,255,255,.46);border-radius:20px;background:rgba(255,255,255,.19);font-size:12px;line-height:1.65}.weekly-insight strong{font-weight:900}.weekly-insight .insight-title{font-weight:900;margin-bottom:4px}
+@media(max-width:430px){.weekly-controls{gap:6px}.weekly-controls .btn{font-size:10px;padding:0 7px;min-height:37px}.weekly-table-head>div,.weekly-row>div{padding:0 7px}.weekly-row{font-size:11px}.weekly-budget-row{grid-template-columns:minmax(0,1fr) 88px 30px}.weekly-add-row .btn{padding:0 9px;font-size:11px}}
 .bottom-nav{
   position:fixed;z-index:50;left:50%;bottom:calc(9px + env(safe-area-inset-bottom));transform:translateX(-50%);
   width:min(310px,calc(100% - 20px));height:var(--nav-h);padding:6px;
@@ -135,7 +152,7 @@ input::placeholder{color:#9d91a5}
   -webkit-backdrop-filter:blur(25px) saturate(145%);backdrop-filter:blur(25px) saturate(145%);
   box-shadow:0 13px 30px rgba(91,53,113,.19),inset 0 1px 0 rgba(255,255,255,.58);
 }
-.nav-pill{position:absolute;z-index:0;top:6px;bottom:6px;width:calc((100% - 12px)/4);border-radius:20px;background:rgba(170,82,199,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 4px 13px rgba(109,48,129,.10);transition:transform .30s cubic-bezier(.2,.8,.2,1)}
+.nav-pill{position:absolute;z-index:0;top:6px;bottom:6px;width:calc((100% - 12px)/5);border-radius:20px;background:rgba(170,82,199,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 4px 13px rgba(109,48,129,.10);transition:transform .30s cubic-bezier(.2,.8,.2,1)}
 .nav-btn{position:relative;z-index:1;border:0;background:transparent;color:rgba(113,52,132,.62);height:100%;display:grid;place-items:center;border-radius:20px;transition:color .2s,transform .2s}.nav-btn svg{width:24px;height:24px}.nav-btn.active{color:#a94fc7}.nav-btn:active{transform:scale(.91)}
 .toast{position:fixed;z-index:100;left:50%;top:14px;transform:translateX(-50%) translateY(-10px);opacity:0;pointer-events:none;padding:9px 13px;border-radius:999px;background:rgba(65,43,74,.78);color:white;font-size:11px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:.2s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .net-negative{color:var(--danger)!important}.net-positive{color:var(--success)!important}
@@ -155,9 +172,36 @@ input::placeholder{color:#9d91a5}
   .money-row{min-height:62px}.text-input,.money-input,.category-select,.source-select{padding:8px 7px;font-size:11px}
   .note-item{grid-template-columns:20px minmax(0,1fr) 78px 32px}
 }
+
+/* Cloud account / login */
+.login-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(145deg,rgba(217,199,231,.96),rgba(234,220,242,.97));-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px)}
+.login-card{width:min(420px,100%);padding:26px;border:1px solid rgba(255,255,255,.72);border-radius:28px;background:rgba(255,255,255,.40);box-shadow:0 22px 60px rgba(102,65,122,.20)}
+.login-mark{width:56px;height:56px;border-radius:19px;display:grid;place-items:center;background:rgba(183,100,216,.22);font-size:26px;margin-bottom:15px}
+.login-card h1{font-size:24px;margin:0 0 7px}.login-card p{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.login-card label{display:block;font-size:11px;font-weight:850;margin:12px 0 6px}.login-input{width:100%;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.52);border-radius:14px;padding:12px;color:var(--text);outline:0}.login-input:focus{border-color:var(--accent)}
+.login-error{font-size:11px;color:var(--danger);min-height:18px;margin:10px 0}.login-submit{width:100%;min-height:45px;border:0;border-radius:15px;background:linear-gradient(135deg,#b764d8,#9850bc);color:white;font-weight:900;box-shadow:0 8px 18px rgba(133,67,159,.18)}
+.login-foot{font-size:10px!important;margin:14px 0 0!important}.account-bar{position:fixed;z-index:60;top:10px;right:10px;display:flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(234,220,242,.82);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 5px 18px rgba(102,65,122,.12);font-size:10px}.account-bar strong{max-width:120px;overflow:hidden;text-overflow:ellipsis}.account-bar button{border:0;border-radius:999px;background:rgba(183,100,216,.20);padding:6px 9px;color:var(--text);font-size:10px;font-weight:850}
+.cloud-status{position:fixed;z-index:55;left:10px;top:12px;padding:7px 10px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(234,220,242,.82);font-size:10px;color:var(--muted);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+@media(max-width:500px){.account-bar{top:auto;bottom:calc(82px + env(safe-area-inset-bottom));right:8px}.cloud-status{top:8px;left:8px}.top-title{margin-top:26px}}
 </style>
 </head>
 <body>
+<div class="login-overlay" id="loginOverlay">
+  <form class="login-card" id="loginForm">
+    <div class="login-mark">☁️</div>
+    <h1>Sổ chi tiêu của bạn</h1>
+    <p>Đăng nhập để đồng bộ chi tiêu, ngân sách tuần, số dư và ghi chú trên nhiều thiết bị.</p>
+    <label for="loginUsername">Tài khoản</label>
+    <input class="login-input" id="loginUsername" autocomplete="username" value="thiyenhito" required>
+    <label for="loginPassword">Mật khẩu</label>
+    <input class="login-input" id="loginPassword" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" required>
+    <div class="login-error" id="loginError" role="status"></div>
+    <button class="login-submit" id="loginSubmit" type="submit">Đăng nhập & đồng bộ</button>
+    <p class="login-foot">Kết nối an toàn qua Supabase. Mật khẩu không được lưu trong file HTML.</p>
+  </form>
+</div>
+<div class="cloud-status" id="cloudStatus">☁ Chưa kết nối</div>
+<div class="account-bar" id="accountBar" hidden><span>Đăng nhập: <strong id="accountName">thiyenhito</strong></span><button id="logoutBtn" type="button">Đăng xuất</button></div>
 <div class="app">
 
   <!-- HOME -->
@@ -195,13 +239,35 @@ input::placeholder{color:#9d91a5}
         <div class="table-footer"><div class="total-label">Tổng tiền vào</div><div></div><div class="total-value" id="incomeTotal">₩0</div></div>
       </div>
       <div class="table-actions"><button class="btn" id="addIncomeBtn">＋ Thêm dòng tiền vào</button></div>
-      <div class="custom-box" style="margin-top:4px">
-        <h3>🛡️ Sao lưu dữ liệu</h3>
-        <p style="font-size:11px;color:var(--muted);line-height:1.6;margin:0 0 10px">Xuất bản sao lưu JSON của dữ liệu đang lưu trên ứng dụng này. Hãy giữ file ở nơi an toàn và không chia sẻ công khai.</p>
-        <button class="btn primary" id="exportJsonBtn" type="button">⬇ Xuất dữ liệu JSON</button>
-        <div class="status" id="exportStatus" style="text-align:left;padding:10px 0 0">Bản sao lưu được tạo trên thiết bị này.</div>
-      </div>
       <div class="status" id="saveStatus">Dữ liệu tự động lưu trên thiết bị</div>
+    </article>
+  </section>
+
+  <!-- WEEKLY BUDGET -->
+  <section class="page" id="page-weekly">
+    <div class="top-title"><div><p>WEEKLY BUDGET</p><h1>🗓️ Quản lý chi tiêu mỗi tuần</h1></div></div>
+    <article class="glass-card weekly-card">
+      <div class="card-head">
+        <p class="eyebrow">Kế hoạch chi tiêu</p>
+        <h2 class="card-title" id="weeklyTitle">Chi tiêu tuần ... → ...</h2>
+        <div class="controls weekly-controls">
+          <button class="btn" id="prevWeekBtn" aria-label="Tuần trước">← Tuần trước</button>
+          <label class="date-wrap" aria-label="Chọn ngày trong tuần"><input class="date-input" id="weeklyDate" type="date"></label>
+          <button class="btn" id="nextWeekBtn" aria-label="Tuần sau">Tuần sau →</button>
+        </div>
+      </div>
+      <div class="weekly-table-shell">
+        <div class="weekly-table-head"><div>Mục chi tiêu</div><div>Đã chi</div><div>Còn lại</div></div>
+        <div id="weeklyRows"></div>
+        <div class="weekly-total"><span>Tổng đã chi / ngân sách</span><strong id="weeklyTotals">₩0 / ₩0</strong></div>
+      </div>
+      <section class="weekly-budget-editor">
+        <div class="weekly-editor-head"><div><p class="eyebrow">Ngân sách tuần này</p><h3>Giới hạn cho từng mục</h3></div><span class="weekly-hint">Có thể chỉnh sửa</span></div>
+        <div id="weeklyBudgetRows"></div>
+        <div class="weekly-add-row"><input id="weeklyCategoryInput" maxlength="35" placeholder="Tên mục chi tiêu mới"><button class="btn primary" id="addWeeklyCategoryBtn">＋ Thêm mục</button></div>
+        <p class="weekly-footnote">Mặc định mỗi tuần: Đồ ăn 35.000 KRW, Đi lại 10.000 KRW, Khác 5.000 KRW. Mục tự thêm chỉ áp dụng cho tuần đang chọn.</p>
+      </section>
+      <div class="weekly-insight" id="weeklyInsight"></div>
     </article>
   </section>
 
@@ -282,6 +348,9 @@ input::placeholder{color:#9d91a5}
   <button class="nav-btn active" data-page="home" aria-label="Trang chủ" title="Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 10.5 9-7 9 7"/><path d="M5.5 9.5V21h13V9.5M9.5 21v-6h5v6"/></svg>
   </button>
+  <button class="nav-btn" data-page="weekly" aria-label="Quản lý chi tiêu mỗi tuần" title="Chi tiêu tuần">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2M8 17h2"/></svg>
+  </button>
   <button class="nav-btn" data-page="notes" aria-label="Take note" title="Take note">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M9 3.5h6M8 8h8M8 12h8M8 16h5"/></svg>
   </button>
@@ -294,7 +363,20 @@ input::placeholder{color:#9d91a5}
 </nav>
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+// CẤU HÌNH CÔNG KHAI: thay URL, anon key và email bằng thông tin dự án Supabase của bạn.
+// Không đặt mật khẩu tài khoản trong mã nguồn. Anon key chỉ an toàn khi bật RLS đúng như hướng dẫn.
+const SUPABASE_URL = "https://mhpovwwdfevastycvchp.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_eZZpUKt0IfwxgPz29sSMJg_ONsm8rl5";
+const LOGIN_EMAIL = "nhithiyento@gmail.com"; // Email đã đăng ký trong Supabase Auth cho username thiyenhito
+const LOGIN_USERNAME = "thiyenhito";
+let supabaseClient = null;
+let authenticatedUser = null;
+let cloudSaveTimer = null;
+let cloudLoadInProgress = false;
+let cloudWriteInProgress = false;
+
 const STORAGE_KEY='daily-expense-dashboard-v1';
 const SETTINGS_KEY='daily-expense-dashboard-settings-v1';
 const MONTHLY_KEY=STORAGE_KEY+'-monthly-incomes';
@@ -319,7 +401,9 @@ state.balances={
 state.categories=[...new Set([...DEFAULT_CATEGORIES,...(Array.isArray(state.categories)?state.categories:[])])];
 
 const currencySymbols={KRW:'₩',VND:'₫'};
-const pages=['home','notes','stats','balance'];
+const pages=['home','weekly','notes','stats','balance'];
+const WEEKLY_KEY=STORAGE_KEY+'-weekly-budgets';
+state.weeklyBudgets=loadObject(WEEKLY_KEY);
 
 function loadObject(key){
   try{const raw=JSON.parse(localStorage.getItem(key)||'{}');return raw&&typeof raw==='object'?raw:{}}catch{return{}}
@@ -327,13 +411,22 @@ function loadObject(key){
 function loadCategories(){
   try{const raw=JSON.parse(localStorage.getItem(CATEGORY_KEY)||'[]');return Array.isArray(raw)?raw:[]}catch{return[]}
 }
-function save(){
+function saveLocalOnly(){
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state.data));
   localStorage.setItem(MONTHLY_KEY,JSON.stringify(state.monthlyIncomes));
   localStorage.setItem(SETTINGS_KEY,JSON.stringify({currency:state.currency}));
   localStorage.setItem(SETTINGS_KEY+'-balances',JSON.stringify(state.balances));
   localStorage.setItem(CATEGORY_KEY,JSON.stringify(state.categories.filter(c=>!DEFAULT_CATEGORIES.includes(c))));
+  localStorage.setItem(WEEKLY_KEY,JSON.stringify(state.weeklyBudgets));
+}
+function save(){
+  saveLocalOnly();
   flashSaved();
+  if(authenticatedUser && !cloudLoadInProgress){
+    clearTimeout(cloudSaveTimer);
+    setCloudStatus('☁ Đang chờ đồng bộ…');
+    cloudSaveTimer=setTimeout(()=>saveCloudData(),700);
+  }
 }
 let saveTimer;
 function flashSaved(){
@@ -341,6 +434,83 @@ function flashSaved(){
   clearTimeout(saveTimer);
   saveTimer=setTimeout(()=>$('#saveStatus').textContent='Dữ liệu tự động lưu trên thiết bị',1100);
 }
+function setCloudStatus(message,isError=false){
+  const el=$('#cloudStatus');if(!el)return;el.textContent=message;el.style.color=isError?'var(--danger)':'var(--muted)';
+}
+function cloudPayload(){
+  return {version:1,selectedDate:state.selectedDate,currency:state.currency,data:state.data,monthlyIncomes:state.monthlyIncomes,balances:state.balances,categories:state.categories,weeklyBudgets:state.weeklyBudgets};
+}
+function applyCloudPayload(payload){
+  if(!payload||typeof payload!=='object')return;
+  cloudLoadInProgress=true;
+  if(payload.data&&typeof payload.data==='object')state.data=payload.data;
+  if(payload.monthlyIncomes&&typeof payload.monthlyIncomes==='object')state.monthlyIncomes=payload.monthlyIncomes;
+  if(payload.balances&&typeof payload.balances==='object')state.balances={cash:toNumber(payload.balances.cash),bank:toNumber(payload.balances.bank)};
+  if(Array.isArray(payload.categories))state.categories=[...new Set([...DEFAULT_CATEGORIES,...payload.categories.filter(x=>typeof x==='string')])];
+  if(payload.weeklyBudgets&&typeof payload.weeklyBudgets==='object')state.weeklyBudgets=payload.weeklyBudgets;
+  if(payload.currency==='KRW'||payload.currency==='VND')state.currency=payload.currency;
+  if(typeof payload.selectedDate==='string' && /^\d{4}-\d{2}-\d{2}$/.test(payload.selectedDate))state.selectedDate=payload.selectedDate;
+  saveLocalOnly();
+  $('#datePicker').value=state.selectedDate;$('#weeklyDate').value=state.selectedDate;$('#statsDate').value=monthKey();
+  document.querySelectorAll('[data-currency]').forEach(b=>b.classList.toggle('active',b.dataset.currency===state.currency));
+  document.querySelectorAll('[data-currency-stats]').forEach(b=>b.classList.toggle('active',b.dataset.currency===state.currency));
+  renderHome();renderNotes();renderStats();renderBalance();renderWeekly();
+  cloudLoadInProgress=false;
+}
+async function saveCloudData(){
+  if(!authenticatedUser||!supabaseClient||cloudWriteInProgress||cloudLoadInProgress)return;
+  cloudWriteInProgress=true;
+  try{
+    const {error}=await supabaseClient.from('user_app_data').upsert({user_id:authenticatedUser.id,payload:cloudPayload(),updated_at:new Date().toISOString()},{onConflict:'user_id'});
+    if(error)throw error;
+    setCloudStatus('☁ Đã đồng bộ');
+  }catch(err){console.error('Cloud save error:',err);setCloudStatus('⚠ Lỗi đồng bộ — dữ liệu vẫn lưu trên thiết bị',true);}
+  finally{cloudWriteInProgress=false;}
+}
+async function loadCloudData(user){
+  cloudLoadInProgress=true;setCloudStatus('☁ Đang tải dữ liệu…');
+  try{
+    const {data,error}=await supabaseClient.from('user_app_data').select('payload').eq('user_id',user.id).maybeSingle();
+    if(error)throw error;
+    if(data&&data.payload){applyCloudPayload(data.payload);setCloudStatus('☁ Đã tải dữ liệu trực tuyến');}
+    else{
+      // Tài khoản chưa có bản ghi trên cloud: đưa dữ liệu hiện có trên thiết bị lên lần đầu.
+      cloudLoadInProgress=false;await saveCloudData();return;
+    }
+  }catch(err){console.error('Cloud load error:',err);setCloudStatus('⚠ Không tải được dữ liệu cloud',true);$('#loginError').textContent='Đăng nhập được nhưng chưa tải được dữ liệu. Hãy kiểm tra bảng và chính sách RLS trong Supabase.';}
+  finally{cloudLoadInProgress=false;}
+}
+function showAuthenticatedUI(user){
+  authenticatedUser=user;$('#loginOverlay').style.display='none';$('#accountBar').hidden=false;$('#accountName').textContent=LOGIN_USERNAME;setCloudStatus('☁ Đang kết nối…');
+}
+function showLoginError(message){$('#loginError').textContent=message;}
+async function initializeCloudAuth(){
+  const configured=SUPABASE_URL.startsWith('https://')&&!SUPABASE_URL.includes('YOUR_')&&SUPABASE_ANON_KEY&&!SUPABASE_ANON_KEY.includes('YOUR_')&&LOGIN_EMAIL.includes('@')&&!LOGIN_EMAIL.includes('YOUR_');
+  if(!configured){setCloudStatus('⚙ Cần cấu hình Supabase',true);showLoginError('Cần điền SUPABASE_URL, SUPABASE_ANON_KEY và LOGIN_EMAIL trong file theo hướng dẫn.');return;}
+  if(!window.supabase?.createClient){setCloudStatus('⚠ Không tải được thư viện',true);showLoginError('Không tải được thư viện Supabase. Kiểm tra kết nối Internet rồi tải lại trang.');return;}
+  supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const {data:{session},error}=await supabaseClient.auth.getSession();
+  if(error){showLoginError('Không kiểm tra được phiên đăng nhập: '+error.message);return;}
+  if(session?.user){showAuthenticatedUI(session.user);await loadCloudData(session.user);}
+  supabaseClient.auth.onAuthStateChange((event,session)=>{
+    if(event==='SIGNED_OUT'){authenticatedUser=null;$('#accountBar').hidden=true;$('#loginOverlay').style.display='flex';setCloudStatus('☁ Đã đăng xuất');}
+  });
+}
+$('#loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();showLoginError('');
+  const username=$('#loginUsername').value.trim();const password=$('#loginPassword').value;
+  if(username!==LOGIN_USERNAME){showLoginError('Tên tài khoản không đúng.');return;}
+  if(!supabaseClient){await initializeCloudAuth();if(!supabaseClient)return;}
+  const button=$('#loginSubmit');button.disabled=true;button.textContent='Đang đăng nhập…';
+  try{
+    const {data,error}=await supabaseClient.auth.signInWithPassword({email:LOGIN_EMAIL,password});
+    if(error)throw error;
+    showAuthenticatedUI(data.user);$('#loginPassword').value='';await loadCloudData(data.user);
+  }catch(err){showLoginError(err.message==='Invalid login credentials'?'Sai mật khẩu hoặc tài khoản chưa được tạo trong Supabase Auth.':('Đăng nhập thất bại: '+err.message));setCloudStatus('⚠ Chưa đăng nhập',true);}
+  finally{button.disabled=false;button.textContent='Đăng nhập & đồng bộ';}
+});
+$('#logoutBtn').addEventListener('click',async()=>{if(!supabaseClient)return;await saveCloudData();await supabaseClient.auth.signOut();});
+
 function todayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 function monthKey(date=state.selectedDate){return date.slice(0,7)}
 function dateVi(k){const [y,m,d]=k.split('-');return `${d}/${m}/${y}`}
@@ -522,12 +692,77 @@ function addNote(type){
 }
 function deleteNote(type,i){currentDay().notes[type].splice(i,1);renderNotes();save()}
 
+function weekStartKey(dateKey){
+  const d=new Date(`${dateKey}T12:00:00`);const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);return todayDateKey(d);
+}
+function todayDateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function shiftDateKey(dateKey,days){const d=new Date(`${dateKey}T12:00:00`);d.setDate(d.getDate()+days);return todayDateKey(d)}
+function weekEndKey(start){return shiftDateKey(start,6)}
+function getWeekBudgets(start){
+  if(!Array.isArray(state.weeklyBudgets[start]))state.weeklyBudgets[start]=[
+    {id:'food',name:'Đồ ăn',limit:35000,type:'food'},
+    {id:'travel',name:'Đi lại',limit:10000,type:'travel'},
+    {id:'other',name:'Khác',limit:5000,type:'other'}
+  ];
+  return state.weeklyBudgets[start];
+}
+function weeklyCategoryType(category){
+  const c=String(category||'').trim().toLocaleLowerCase('vi');
+  if(['đồ ăn','ăn vặt','ăn uống','do an','food','đồ ăn và ăn vặt'].includes(c))return 'food';
+  if(c==='đi lại'||c==='di lai'||c==='transport'||c==='transportation')return 'travel';
+  return 'other';
+}
+function weeklyExpenseRows(start,budgets){
+  const end=weekEndKey(start),totals={};budgets.forEach(b=>totals[b.id]=0);
+  Object.entries(state.data).forEach(([date,raw])=>{
+    if(date<start||date>end)return;
+    normalizeDay(date,raw).expenses.forEach(r=>{
+      const amount=toNumber(r.amount);if(!amount)return;
+      const type=weeklyCategoryType(r.category);
+      if(type==='food'){const b=budgets.find(x=>x.type==='food');if(b)totals[b.id]=(totals[b.id]||0)+amount;return}
+      if(type==='travel'){const b=budgets.find(x=>x.type==='travel');if(b)totals[b.id]=(totals[b.id]||0)+amount;return}
+      const exact=budgets.find(x=>x.type==='custom'&&String(r.category||'').trim().toLocaleLowerCase('vi')===x.name.trim().toLocaleLowerCase('vi'));
+      if(exact)totals[exact.id]=(totals[exact.id]||0)+amount;
+      else {const other=budgets.find(x=>x.type==='other');if(other)totals[other.id]=(totals[other.id]||0)+amount}
+    });
+  });
+  return totals;
+}
+function renderWeekly(){
+  const picker=$('#weeklyDate');if(!picker.value)picker.value=state.selectedDate||todayKey();
+  const start=weekStartKey(picker.value),end=weekEndKey(start),budgets=getWeekBudgets(start),spent=weeklyExpenseRows(start,budgets);
+  $('#weeklyTitle').textContent=`Chi tiêu tuần ${dateVi(start)} → ${dateVi(end)}`;
+  const rows=$('#weeklyRows');rows.innerHTML='';let totalSpent=0,totalLimit=0;
+  budgets.forEach(b=>{
+    const limit=toNumber(b.limit),amount=toNumber(spent[b.id]),left=limit-amount;totalSpent+=amount;totalLimit+=limit;
+    const row=document.createElement('div');row.className='weekly-row';
+    row.innerHTML=`<div class="weekly-name">${escapeHtml(b.name)}${b.type==='custom'?'<small>Chỉ tuần này</small>':''}</div><div class="weekly-spent">${fmt(amount)} <small>KRW</small></div><div class="weekly-left ${left<0?'negative':'positive'}">${left<0?'−':''}${fmt(Math.abs(left))} <small>KRW</small></div>`;
+    rows.appendChild(row);
+  });
+  $('#weeklyTotals').textContent=`${fmt(totalSpent)} / ${fmt(totalLimit)} KRW`;
+  const editor=$('#weeklyBudgetRows');editor.innerHTML='';
+  budgets.forEach((b,i)=>{
+    const row=document.createElement('div');row.className='weekly-budget-row';
+    row.innerHTML=`<div class="weekly-budget-name">${escapeHtml(b.name)}${b.type==='custom'?'<small style="display:block;color:var(--muted);font-size:9px">Chỉ áp dụng tuần ${dateVi(start)}</small>':''}</div><input class="weekly-budget-input" type="number" min="0" step="1000" inputmode="numeric" aria-label="Ngân sách ${escapeHtml(b.name)}" value="${toNumber(b.limit)}" data-budget-index="${i}"><button class="icon-btn" ${b.type==='custom'?'data-remove-weekly="'+escapeHtml(b.id)+'"':'disabled aria-label="Mục mặc định"'} title="${b.type==='custom'?'Xóa mục':'Mục mặc định'}">${b.type==='custom'?'×':'·'}</button>`;
+    editor.appendChild(row);
+  });
+  const over=budgets.filter(b=>toNumber(spent[b.id])>toNumber(b.limit));
+  $('#weeklyInsight').innerHTML=`<div class="insight-title">💡 Tổng kết tuần</div>${over.length?`Bạn đã vượt ngân sách ở <strong>${over.map(b=>escapeHtml(b.name)).join(', ')}</strong>. Hãy cân nhắc giảm chi ở các ngày còn lại.`:'Bạn vẫn đang trong giới hạn ngân sách ở tất cả các mục. Tiếp tục duy trì nhé!'}<br><span style="color:var(--muted)">Còn lại toàn tuần: <strong>${fmt(totalLimit-totalSpent)} KRW</strong>${totalLimit-totalSpent<0?' (đã vượt tổng ngân sách)':''}</span>`;
+  save();
+}
+function addWeeklyBudget(){
+  const input=$('#weeklyCategoryInput'),name=input.value.trim();if(!name){showToast('Hãy nhập tên mục chi tiêu');return}
+  const start=weekStartKey($('#weeklyDate').value||todayKey()),budgets=getWeekBudgets(start);
+  if(budgets.some(b=>b.name.toLocaleLowerCase('vi')===name.toLocaleLowerCase('vi'))){showToast('Mục này đã tồn tại trong tuần');return}
+  budgets.push({id:`custom_${Date.now()}`,name,limit:0,type:'custom'});input.value='';renderWeekly();showToast('Đã thêm mục cho tuần này');
+}
 function navigate(page){
   if(!pages.includes(page))return;
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===`page-${page}`));
   document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',b.dataset.page===page));
   const index=pages.indexOf(page);
   $('#navPill').style.transform=`translateX(${index*100}%)`;
+  if(page==='weekly')renderWeekly();
   if(page==='stats')renderStats();
   if(page==='balance')renderBalance();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -558,7 +793,6 @@ document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>
 $('#datePicker').addEventListener('change',()=>{state.selectedDate=$('#datePicker').value||todayKey();currentDay();renderHome();renderNotes();save()});
 $('#statsDate').addEventListener('change',renderStats);
 $('#addExpenseBtn').addEventListener('click',addExpense);$('#addIncomeBtn').addEventListener('click',addIncome);
-$('#exportJsonBtn').addEventListener('click',exportLocalData);
 
 $('#expenseRows').addEventListener('input',e=>handleTableInput(e,'expense'));
 $('#expenseRows').addEventListener('change',e=>handleTableInput(e,'expense'));
@@ -570,12 +804,28 @@ $('#incomeRows').addEventListener('keydown',e=>handleTableKey(e,'income'));
 document.querySelectorAll('[data-currency]').forEach(b=>b.addEventListener('click',()=>{
   state.currency=b.dataset.currency;document.querySelectorAll('[data-currency]').forEach(x=>x.classList.toggle('active',x.dataset.currency===state.currency));
   document.querySelectorAll('[data-currency-stats]').forEach(x=>x.classList.toggle('active',x.dataset.currency===state.currency));
-  renderHome();renderNotes();renderStats();renderBalance();save();
+  renderHome();renderNotes();renderStats();renderBalance();if(document.querySelector("#page-weekly.active"))renderWeekly();save();
 }));
 document.querySelectorAll('[data-currency-stats]').forEach(b=>b.addEventListener('click',()=>{
   state.currency=b.dataset.currency;document.querySelectorAll('[data-currency]').forEach(x=>x.classList.toggle('active',x.dataset.currency===state.currency));document.querySelectorAll('[data-currency-stats]').forEach(x=>x.classList.toggle('active',x.dataset.currency===state.currency));
   renderHome();renderStats();renderBalance();save();
 }));
+
+$('#weeklyDate').value=state.selectedDate;
+$('#weeklyDate').addEventListener('change',()=>renderWeekly());
+$('#prevWeekBtn').addEventListener('click',()=>{$('#weeklyDate').value=shiftDateKey($('#weeklyDate').value||todayKey(),-7);renderWeekly()});
+$('#nextWeekBtn').addEventListener('click',()=>{$('#weeklyDate').value=shiftDateKey($('#weeklyDate').value||todayKey(),7);renderWeekly()});
+$('#addWeeklyCategoryBtn').addEventListener('click',addWeeklyBudget);
+$('#weeklyCategoryInput').addEventListener('keydown',e=>{if(e.key==='Enter')addWeeklyBudget()});
+$('#weeklyBudgetRows').addEventListener('change',e=>{
+  const input=e.target.closest('[data-budget-index]');if(!input)return;
+  const start=weekStartKey($('#weeklyDate').value||todayKey()),b=getWeekBudgets(start)[Number(input.dataset.budgetIndex)];if(!b)return;
+  b.limit=toNumber(input.value);renderWeekly();showToast('Đã cập nhật ngân sách tuần');
+});
+$('#weeklyBudgetRows').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-remove-weekly]');if(!btn)return;
+  const start=weekStartKey($('#weeklyDate').value||todayKey()),budgets=getWeekBudgets(start);state.weeklyBudgets[start]=budgets.filter(b=>b.id!==btn.dataset.removeWeekly);renderWeekly();showToast('Đã xóa mục của tuần này');
+});
 
 document.querySelectorAll('[data-add-note]').forEach(b=>b.addEventListener('click',()=>addNote(b.dataset.addNote)));
 document.querySelectorAll('.note-list').forEach(list=>{
@@ -608,36 +858,6 @@ $('#categoryChips').addEventListener('click',e=>{
   const cat=b.dataset.deleteCategory;state.categories=state.categories.filter(c=>c!==cat);renderHome();renderStats();save();showToast('Đã xóa phân loại');
 });
 
-function exportLocalData(){
-  // Export every localStorage entry for this web-app origin, including known app keys.
-  // This does not delete or modify any stored data.
-  const entries={};
-  for(let i=0;i<localStorage.length;i++){
-    const key=localStorage.key(i);
-    if(key===null)continue;
-    const raw=localStorage.getItem(key);
-    try{entries[key]=JSON.parse(raw)}catch{entries[key]=raw}
-  }
-  const backup={
-    format:'expense-tracker-localStorage-backup',
-    schemaVersion:1,
-    exportedAt:new Date().toISOString(),
-    origin:location.origin,
-    storageType:'localStorage',
-    entries
-  };
-  const json=JSON.stringify(backup,null,2);
-  const blob=new Blob([json],{type:'application/json;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  const stamp=new Date().toISOString().replace(/[:.]/g,'-');
-  a.href=url;a.download=`so-chi-tieu-backup-${stamp}.json`;
-  a.style.display='none';document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),30000);
-  $('#exportStatus').textContent='Đã tạo yêu cầu tải bản sao lưu. Hãy kiểm tra ứng dụng Tệp (Files) hoặc mục Downloads.';
-  showToast('Đã tạo bản sao lưu JSON');
-}
-
 function showToast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),1500)}
 
 try{
@@ -649,7 +869,8 @@ $('#datePicker').value=state.selectedDate;
 $('#statsDate').value=monthKey();
 document.querySelectorAll('[data-currency]').forEach(b=>b.classList.toggle('active',b.dataset.currency===state.currency));
 document.querySelectorAll('[data-currency-stats]').forEach(b=>b.classList.toggle('active',b.dataset.currency===state.currency));
-renderHome();renderNotes();renderStats();renderBalance();
+renderHome();renderNotes();renderStats();renderBalance();renderWeekly();
+initializeCloudAuth();
 </script>
 </body>
 </html>
