@@ -700,9 +700,9 @@ function shiftDateKey(dateKey,days){const d=new Date(`${dateKey}T12:00:00`);d.se
 function weekEndKey(start){return shiftDateKey(start,6)}
 function getWeekBudgets(start){
   if(!Array.isArray(state.weeklyBudgets[start]))state.weeklyBudgets[start]=[
-    {id:'food',name:'Đồ ăn',limit:35000,type:'food'},
+    {id:'food',name:'Đồ ăn',limit:40000,type:'food'},
     {id:'travel',name:'Đi lại',limit:10000,type:'travel'},
-    {id:'other',name:'Khác',limit:5000,type:'other'}
+    {id:'other',name:'Khác',limit:10000,type:'other'}
   ];
   return state.weeklyBudgets[start];
 }
