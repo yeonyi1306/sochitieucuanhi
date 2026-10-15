@@ -9,8 +9,8 @@
 :root{
   --bg:#d9c7e7;
   --bg2:#eadcf2;
-  --glass:rgba(255,255,255,.27);
-  --glass-strong:rgba(255,255,255,.39);
+  --glass:rgba(255,255,255,.15);
+  --glass-strong:rgba(255,255,255,.30);
   --glass-soft:rgba(255,255,255,.18);
   --border:rgba(255,255,255,.52);
   --text:#2d2336;
@@ -265,7 +265,7 @@ input::placeholder{color:#9d91a5}
         <div class="weekly-editor-head"><div><p class="eyebrow">Ngân sách tuần này</p><h3>Giới hạn cho từng mục</h3></div><span class="weekly-hint">Có thể chỉnh sửa</span></div>
         <div id="weeklyBudgetRows"></div>
         <div class="weekly-add-row"><input id="weeklyCategoryInput" maxlength="35" placeholder="Tên mục chi tiêu mới"><button class="btn primary" id="addWeeklyCategoryBtn">＋ Thêm mục</button></div>
-        <p class="weekly-footnote">Mặc định mỗi tuần: Đồ ăn 35.000 KRW, Đi lại 10.000 KRW, Khác 5.000 KRW. Mục tự thêm chỉ áp dụng cho tuần đang chọn.</p>
+        <p class="weekly-footnote">Mặc định mỗi tuần: Đồ ăn 40.000 KRW, Đi lại 10.000 KRW, Khác 5.000 KRW. Mục tự thêm chỉ áp dụng cho tuần đang chọn.</p>
       </section>
       <div class="weekly-insight" id="weeklyInsight"></div>
     </article>
@@ -702,7 +702,7 @@ function getWeekBudgets(start){
   if(!Array.isArray(state.weeklyBudgets[start]))state.weeklyBudgets[start]=[
     {id:'food',name:'Đồ ăn',limit:40000,type:'food'},
     {id:'travel',name:'Đi lại',limit:10000,type:'travel'},
-    {id:'other',name:'Khác',limit:10000,type:'other'}
+    {id:'other',name:'Khác',limit:5000,type:'other'}
   ];
   return state.weeklyBudgets[start];
 }
